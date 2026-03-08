@@ -1,0 +1,2850 @@
+<!doctype html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>The Gist — Founding Pitch</title>
+        <link
+            href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:ital,wght@0,400;0,600;0,700;0,800;1,400;1,700&family=Barlow:ital,wght@0,400;0,500;0,600;1,400&family=Kalam:wght@300;400;700&display=swap"
+            rel="stylesheet"
+        />
+        <style>
+            *,
+            *::before,
+            *::after {
+                box-sizing: border-box;
+                margin: 0;
+                padding: 0;
+            }
+
+            :root {
+                --yellow: #ffc512;
+                --black: #000000;
+                --white: #ffffff;
+                --darkblue: #282e47;
+                --softgrey: #f3f3f5;
+                --beige: #f9f7f2;
+                --grey45: #7b7b7b;
+                --grey38: #9f9f9f;
+                --grey10: #e5e5e5;
+                --condensed: 'Barlow Condensed', sans-serif;
+                --body: 'Barlow', sans-serif;
+            }
+
+            html,
+            body {
+                width: 100%;
+                min-height: 100vh;
+                background: #111;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                font-family: var(--body);
+            }
+
+            .page {
+                width: 100%;
+                max-width: 1200px;
+                background: var(--white);
+                position: relative;
+                overflow: hidden;
+                box-shadow: 0 24px 80px rgba(0, 0, 0, 0.6);
+                display: flex;
+                flex-direction: column;
+                zoom: 1.4;
+            }
+
+            /* Print / PDF export for Canva: keep elements as separate text and images */
+            @media print {
+                body {
+                    background: #fff;
+                    padding: 0;
+                }
+                .edit-tip {
+                    display: none !important;
+                }
+                .page {
+                    box-shadow: none;
+                }
+            }
+
+            @media print, (resolution: 1dppx) {
+                .page {
+                    -webkit-print-color-adjust: exact;
+                    print-color-adjust: exact;
+                }
+            }
+
+            /* ─── HEADER ─── */
+            .header {
+                background: var(--black);
+                padding: 16px 28px 14px;
+                display: flex;
+                justify-content: space-between;
+                align-items: center;
+                flex-shrink: 0;
+            }
+
+            .logo-lockup {
+                display: flex;
+                align-items: center;
+                gap: 14px;
+            }
+
+            .logo-text {
+                line-height: 1;
+            }
+
+            .logo-the {
+                font-family: var(--condensed);
+                font-size: 20px;
+                font-weight: 800;
+                color: var(--white);
+                display: block;
+                letter-spacing: 1px;
+                text-transform: lowercase;
+            }
+
+            .logo-gist-row {
+                display: flex;
+                align-items: center;
+                gap: 0;
+            }
+
+            .logo-gist {
+                font-family: var(--condensed);
+                font-size: 28px;
+                font-weight: 800;
+                color: var(--white);
+                letter-spacing: 1px;
+                text-transform: lowercase;
+                line-height: 1;
+            }
+
+            .logo-dot {
+                width: 7px;
+                height: 7px;
+                background: var(--yellow);
+                border-radius: 50%;
+                margin-bottom: 10px;
+                margin-left: -1px;
+                flex-shrink: 0;
+            }
+
+            .logo-meta {
+                border-left: 1px solid #333;
+                padding-left: 14px;
+                display: flex;
+                flex-direction: column;
+                gap: 3px;
+            }
+
+            .logo-descriptor {
+                font-family: var(--condensed);
+                font-size: 9px;
+                letter-spacing: 2.5px;
+                text-transform: uppercase;
+                color: var(--yellow);
+                font-weight: 700;
+                white-space: nowrap;
+            }
+
+            .logo-sub {
+                font-family: var(--body);
+                font-size: 10px;
+                color: #fff;
+            }
+
+            .logo-sub s {
+                color: #aaa;
+                text-decoration-color: var(--yellow);
+                text-decoration-thickness: 2px;
+            }
+
+            .header-right {
+                display: flex;
+                flex-direction: column;
+                align-items: flex-end;
+                gap: 7px;
+            }
+
+            .header-link {
+                display: flex;
+                align-items: center;
+                gap: 7px;
+                text-decoration: none;
+                color: #777;
+                font-family: var(--condensed);
+                font-size: 10px;
+                letter-spacing: 1px;
+                font-weight: 600;
+                text-transform: lowercase;
+                transition: color 0.2s;
+            }
+
+            .header-link:hover {
+                color: var(--yellow);
+            }
+
+            .header-link span {
+                border-bottom: 1px solid #333;
+                padding-bottom: 1px;
+            }
+
+            .header-link:hover span {
+                border-color: var(--yellow);
+            }
+
+            .confidential {
+                font-family: var(--condensed);
+                font-size: 8px;
+                letter-spacing: 2px;
+                text-transform: uppercase;
+                color: var(--yellow);
+                border: 1px solid var(--yellow);
+                padding: 3px 9px;
+                font-weight: 700;
+            }
+
+            .header-date {
+                font-family: var(--condensed);
+                font-size: 9px;
+                letter-spacing: 1.5px;
+                color: #555;
+                text-transform: uppercase;
+                font-weight: 600;
+            }
+
+            /* ─── HERO ─── */
+            .hero {
+                background: var(--yellow);
+                padding: 20px 28px 18px;
+                display: grid;
+                grid-template-columns: 1fr auto;
+                gap: 16px;
+                align-items: center;
+                flex-shrink: 0;
+            }
+
+            .hero-statement {
+                font-family: var(--condensed);
+                font-size: 23px;
+                font-weight: 800;
+                line-height: 1.2;
+                color: var(--black);
+                letter-spacing: -0.2px;
+                text-transform: uppercase;
+            }
+
+            .hero-statement em {
+                font-style: normal;
+                background: var(--black);
+                color: var(--yellow);
+                padding: 1px 6px;
+            }
+
+            .hero-label {
+                font-family: var(--condensed);
+                font-size: 8px;
+                letter-spacing: 2px;
+                text-transform: uppercase;
+                color: rgba(0, 0, 0, 0.38);
+                font-weight: 700;
+                writing-mode: vertical-rl;
+                transform: rotate(180deg);
+                white-space: nowrap;
+            }
+
+            /* ─── SIDE-BY-SIDE ROWS ─── */
+            .context-row {
+                display: grid;
+                grid-template-columns: 1fr 1fr;
+                border-bottom: 1px solid var(--grey10);
+            }
+
+            .origin-row {
+                padding: 18px 20px;
+                background: var(--beige);
+                border-right: 1px solid var(--grey10);
+            }
+
+            .origin-row .cell-label {
+                font-family: var(--condensed);
+                font-size: 8px;
+                letter-spacing: 3px;
+                text-transform: uppercase;
+                font-weight: 700;
+                color: var(--black);
+                margin-bottom: 12px;
+                display: flex;
+                align-items: center;
+                gap: 7px;
+            }
+
+            .origin-row .cell-label::after {
+                content: '';
+                flex: 1;
+                height: 1px;
+                background: var(--grey10);
+            }
+
+            .origin-row .origin-body {
+                max-width: 100%;
+                font-family: 'Kalam', cursive;
+                font-size: 13.5px;
+                line-height: 1.55;
+            }
+
+            .main-grid {
+                display: grid;
+                grid-template-columns: 1fr 1fr;
+            }
+
+            .cell {
+                padding: 18px 20px;
+                border-right: 1px solid var(--grey10);
+                border-bottom: 1px solid var(--grey10);
+                display: flex;
+                flex-direction: column;
+            }
+
+            .cell:nth-child(2n) {
+                border-right: none;
+            }
+
+            .cell-label {
+                font-family: var(--condensed);
+                font-size: 8px;
+                letter-spacing: 3px;
+                text-transform: uppercase;
+                font-weight: 700;
+                color: var(--black);
+                margin-bottom: 12px;
+                display: flex;
+                align-items: center;
+                gap: 7px;
+            }
+
+            .cell-label-dot {
+                width: 6px;
+                height: 6px;
+                background: var(--yellow);
+                border-radius: 50%;
+                flex-shrink: 0;
+            }
+
+            .cell-label::after {
+                content: '';
+                flex: 1;
+                height: 1px;
+                background: var(--grey10);
+            }
+
+            /* ORIGIN */
+            .origin-body {
+                font-family: 'Kalam', cursive;
+                font-size: 15px;
+                line-height: 1.65;
+                color: #222;
+            }
+
+            .origin-body strong {
+                font-weight: 600;
+            }
+
+            .founder-strip {
+                margin-top: 14px;
+                padding-top: 12px;
+                border-top: 1px solid var(--grey10);
+                display: flex;
+                align-items: center;
+                gap: 10px;
+            }
+
+            .founder-avatar {
+                width: 30px;
+                height: 30px;
+                background: var(--yellow);
+                border-radius: 50%;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                font-family: var(--condensed);
+                font-size: 15px;
+                font-weight: 800;
+                color: var(--black);
+                flex-shrink: 0;
+            }
+
+            .founder-info {
+                font-family: var(--condensed);
+                font-size: 10px;
+                line-height: 1.5;
+                color: var(--grey45);
+            }
+
+            .founder-name {
+                color: var(--black);
+                font-size: 11px;
+                font-weight: 700;
+                display: block;
+                letter-spacing: 0.3px;
+            }
+
+            /* MAP */
+            .map-cell {
+                background: var(--softgrey);
+            }
+
+            .axis-chart {
+                width: 100%;
+                aspect-ratio: 1 / 0.9;
+            }
+            .axis-chart svg {
+                width: 100%;
+                height: 100%;
+            }
+
+            /* MODEL */
+            .model-row {
+                margin-bottom: 13px;
+            }
+
+            .model-row-top {
+                display: flex;
+                justify-content: space-between;
+                align-items: baseline;
+                margin-bottom: 5px;
+            }
+
+            .model-row-name {
+                font-family: var(--condensed);
+                font-size: 16px;
+                letter-spacing: 1.5px;
+                text-transform: uppercase;
+                font-weight: 700;
+                color: var(--black);
+            }
+
+            .model-row-pct {
+                font-family: var(--condensed);
+                font-size: 15px;
+                font-weight: 800;
+                color: var(--black);
+                line-height: 1;
+            }
+
+            .bar-track {
+                height: 6px;
+                background: var(--grey10);
+                border-radius: 1px;
+                overflow: hidden;
+            }
+
+            .bar-fill {
+                height: 100%;
+                border-radius: 1px;
+                background: var(--yellow);
+            }
+            .bar-fill.alt {
+                background: var(--darkblue);
+            }
+            .bar-fill.dim {
+                background: var(--grey38);
+            }
+
+            .model-note {
+                margin-top: auto;
+                background: var(--yellow);
+                padding: 9px 11px;
+                font-family: var(--condensed);
+                font-size: 11px;
+                font-weight: 700;
+                text-transform: uppercase;
+                letter-spacing: 0.5px;
+                color: var(--black);
+                line-height: 1.45;
+            }
+
+            /* ROADMAP */
+            .roadmap-wrapper {
+                grid-column: 1 / 3;
+                display: grid;
+                grid-template-columns: 1fr 1fr 1fr;
+                border-bottom: 1px solid var(--grey10);
+            }
+
+            .roadmap-col {
+                padding: 16px 20px;
+                border-right: 1px solid var(--grey10);
+            }
+
+            .roadmap-col:last-child {
+                border-right: none;
+            }
+            .roadmap-col.active {
+                background: var(--beige);
+            }
+
+            .phase-header {
+                display: flex;
+                align-items: center;
+                gap: 8px;
+                margin-bottom: 10px;
+            }
+
+            .phase-tag {
+                font-family: var(--condensed);
+                font-size: 8px;
+                font-weight: 700;
+                letter-spacing: 2px;
+                text-transform: uppercase;
+                padding: 2px 8px;
+            }
+
+            .phase-tag.now {
+                background: var(--yellow);
+                color: var(--black);
+            }
+            .phase-tag.next {
+                background: var(--darkblue);
+                color: var(--white);
+            }
+            .phase-tag.later {
+                background: var(--grey10);
+                color: var(--grey45);
+            }
+
+            .phase-period {
+                font-family: var(--condensed);
+                font-size: 8.5px;
+                letter-spacing: 1px;
+                color: var(--grey45);
+                text-transform: uppercase;
+                font-weight: 600;
+            }
+
+            .roadmap-item {
+                font-size: 10.5px;
+                color: #222;
+                line-height: 1.5;
+                padding: 5px 0;
+                border-bottom: 1px solid var(--grey10);
+                display: flex;
+                gap: 8px;
+                align-items: flex-start;
+            }
+
+            .roadmap-item:last-child {
+                border-bottom: none;
+            }
+
+            .ri-bullet {
+                width: 5px;
+                height: 5px;
+                border-radius: 50%;
+                margin-top: 5px;
+                flex-shrink: 0;
+            }
+
+            .ri-bullet.y {
+                background: var(--yellow);
+            }
+            .ri-bullet.b {
+                background: var(--darkblue);
+            }
+            .ri-bullet.g {
+                background: var(--grey38);
+            }
+
+            /* LANDSCAPE */
+            .landscape-row {
+                padding: 6px 2px 0;
+                background: #fff;
+                display: flex;
+                flex-direction: column;
+            }
+
+            .landscape-row .cell-label {
+                font-family: var(--condensed);
+                font-size: 8px;
+                letter-spacing: 3px;
+                text-transform: uppercase;
+                font-weight: 700;
+                color: var(--black);
+                margin-bottom: 6px;
+                padding: 0 6px;
+                display: flex;
+                align-items: center;
+                gap: 7px;
+            }
+
+            .landscape-row .cell-label::after {
+                content: '';
+                flex: 1;
+                height: 1px;
+                background: var(--grey10);
+            }
+
+            .landscape-row .axis-chart svg {
+                width: 100%;
+                height: auto;
+            }
+
+            .spectrum-wrap {
+                flex: 1;
+                display: flex;
+            }
+
+            .spectrum-wrap svg {
+                width: 100%;
+                height: 100%;
+                display: block;
+            }
+
+            /* Revenue Model — side by side with traction */
+            .revenue-cell {
+                grid-column: auto;
+                border-right: 1px solid var(--grey10);
+                border-bottom: none;
+            }
+
+            .traction-cell {
+                grid-column: auto;
+                background: var(--beige);
+                border-right: none;
+                border-bottom: none;
+                padding: 14px 20px;
+            }
+
+            .traction-cell .traction-stats {
+                display: flex;
+                flex-wrap: wrap;
+                gap: 8px;
+                margin-bottom: 0;
+                justify-content: center;
+            }
+
+            .traction-cell .traction-stat {
+                flex: 1 1 calc(50% - 4px);
+                min-width: 0;
+                background: #fff;
+                border: 1px solid var(--grey10);
+                padding: 9px 12px;
+                border-radius: 2px;
+                display: flex;
+                align-items: center;
+                gap: 8px;
+            }
+
+            .traction-cell .traction-num {
+                font-family: var(--condensed);
+                font-size: 20px;
+                font-weight: 800;
+                color: var(--black);
+                line-height: 1;
+                flex-shrink: 0;
+                min-width: 36px;
+                text-align: right;
+            }
+
+            .traction-cell .traction-desc {
+                font-family: var(--body);
+                font-size: 9px;
+                color: #666;
+                letter-spacing: 0.5px;
+                text-transform: uppercase;
+            }
+
+            .traction-cell .traction-quote {
+                display: none;
+            }
+
+            .traction-bar {
+                background: var(--softgrey);
+                padding: 10px 28px;
+                display: flex;
+                align-items: center;
+                border-top: 1px solid var(--grey10);
+                flex-shrink: 0;
+            }
+
+            .traction-label {
+                font-family: var(--condensed);
+                font-size: 7.5px;
+                letter-spacing: 2.5px;
+                text-transform: uppercase;
+                font-weight: 700;
+                color: var(--grey45);
+                padding-right: 20px;
+                border-right: 1px solid var(--grey10);
+                margin-right: 20px;
+                white-space: nowrap;
+                flex-shrink: 0;
+            }
+
+            .traction-stats {
+                display: flex;
+                flex: 1;
+                align-items: center;
+            }
+
+            .traction-stat {
+                flex: 1;
+                border-right: 1px solid var(--grey10);
+                padding: 0 16px;
+                display: flex;
+                align-items: baseline;
+                gap: 7px;
+            }
+
+            .traction-stat:first-child {
+                padding-left: 0;
+            }
+
+            .traction-num {
+                font-family: var(--condensed);
+                font-size: 22px;
+                font-weight: 800;
+                color: var(--black);
+                line-height: 1;
+            }
+
+            .traction-desc {
+                font-size: 9.5px;
+                color: var(--grey45);
+                line-height: 1.35;
+                max-width: 72px;
+            }
+
+            .traction-quote {
+                flex: 2.2;
+                padding-left: 16px;
+                font-size: 10.5px;
+                font-style: italic;
+                color: #444;
+                line-height: 1.5;
+                border-right: none;
+                position: relative;
+                padding-left: 24px;
+            }
+
+            .traction-quote::before {
+                content: '"';
+                font-family: var(--condensed);
+                font-size: 28px;
+                font-weight: 800;
+                color: var(--yellow);
+                position: absolute;
+                left: 8px;
+                top: -4px;
+                line-height: 1;
+            }
+
+            /* ─── CONTENT SHOWCASE ─── */
+            .content-showcase {
+                padding: 18px 20px;
+                border-bottom: 1px solid var(--grey10);
+                background: var(--softgrey);
+            }
+
+            .showcase-grid {
+                display: grid;
+                grid-template-columns: repeat(3, 1fr);
+                gap: 12px;
+                margin-top: 2px;
+            }
+
+            .showcase-card {
+                background: var(--white);
+                border: 1px solid var(--grey10);
+                border-radius: 3px;
+                overflow: hidden;
+                display: flex;
+                flex-direction: column;
+            }
+
+            .showcase-thumb {
+                aspect-ratio: 16 / 9;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                font-family: var(--condensed);
+                font-size: 28px;
+                font-weight: 800;
+                color: var(--white);
+                position: relative;
+                overflow: hidden;
+            }
+
+            .showcase-thumb img {
+                width: 100%;
+                height: 100%;
+                object-fit: cover;
+                object-position: top;
+                display: block;
+            }
+
+            .showcase-thumb.th-1 {
+                background: var(--darkblue);
+            }
+            .showcase-thumb.th-2 {
+                background: var(--black);
+            }
+            .showcase-thumb.th-3 {
+                background: #1a3a2a;
+            }
+
+            .showcase-type {
+                position: absolute;
+                top: 6px;
+                left: 8px;
+                font-family: var(--condensed);
+                font-size: 7px;
+                font-weight: 700;
+                letter-spacing: 2px;
+                text-transform: uppercase;
+                color: var(--yellow);
+                background: rgba(0, 0, 0, 0.4);
+                padding: 2px 6px;
+                border-radius: 1px;
+            }
+
+            .showcase-body {
+                padding: 10px 11px;
+                flex: 1;
+                display: flex;
+                flex-direction: column;
+                gap: 4px;
+            }
+
+            .showcase-title {
+                font-family: var(--condensed);
+                font-size: 11.5px;
+                font-weight: 700;
+                color: var(--black);
+                line-height: 1.3;
+                text-transform: uppercase;
+                letter-spacing: 0.2px;
+            }
+
+            .showcase-desc {
+                font-size: 9px;
+                color: var(--grey45);
+                line-height: 1.5;
+            }
+
+            .showcase-meta {
+                margin-top: auto;
+                padding-top: 6px;
+                border-top: 1px solid var(--grey10);
+                font-family: var(--condensed);
+                font-size: 8px;
+                letter-spacing: 1px;
+                text-transform: uppercase;
+                color: var(--grey38);
+                font-weight: 600;
+            }
+
+            /* ─── CONTENT TICKER ─── */
+            .content-ticker {
+                background: var(--black);
+                padding: 10px 0;
+                overflow: hidden;
+                position: relative;
+                border-bottom: 1px solid #1a1a1a;
+            }
+
+            .content-ticker::before,
+            .content-ticker::after {
+                content: '';
+                position: absolute;
+                top: 0;
+                bottom: 0;
+                width: 40px;
+                z-index: 2;
+                pointer-events: none;
+            }
+
+            .content-ticker::before {
+                left: 0;
+                background: linear-gradient(
+                    to right,
+                    var(--black),
+                    transparent
+                );
+            }
+
+            .content-ticker::after {
+                right: 0;
+                background: linear-gradient(to left, var(--black), transparent);
+            }
+
+            .ticker-track {
+                display: flex;
+                gap: 0;
+                animation: ticker-scroll 55s linear infinite;
+                width: max-content;
+            }
+
+            .ticker-track:hover {
+                animation-play-state: paused;
+            }
+
+            @keyframes ticker-scroll {
+                0% {
+                    transform: translateX(0);
+                }
+                100% {
+                    transform: translateX(-50%);
+                }
+            }
+
+            .ticker-item {
+                width: 110px;
+                height: 140px;
+                overflow: hidden;
+                flex-shrink: 0;
+                border-right: 2px solid var(--black);
+                cursor: pointer;
+            }
+
+            .ticker-item img {
+                width: 100%;
+                height: 100%;
+                object-fit: cover;
+                object-position: top;
+                display: block;
+            }
+
+            /* Lightbox overlay */
+            .lightbox {
+                display: none;
+                position: fixed;
+                top: 0;
+                left: 0;
+                width: 100%;
+                height: 100%;
+                background: rgba(0, 0, 0, 0.85);
+                z-index: 9999;
+                align-items: center;
+                justify-content: center;
+                cursor: pointer;
+            }
+            .lightbox.active {
+                display: flex;
+            }
+            .lightbox img {
+                max-width: 75%;
+                max-height: 90%;
+                object-fit: contain;
+                border-radius: 4px;
+            }
+            .lb-arrow {
+                position: absolute;
+                top: 50%;
+                transform: translateY(-50%);
+                background: rgba(255, 255, 255, 0.15);
+                border: none;
+                color: #fff;
+                font-size: 48px;
+                width: 50px;
+                height: 70px;
+                cursor: pointer;
+                border-radius: 6px;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                transition: background 0.2s;
+                z-index: 10000;
+            }
+            .lb-arrow:hover {
+                background: rgba(255, 255, 255, 0.3);
+            }
+            .lb-prev {
+                left: 20px;
+            }
+            .lb-next {
+                right: 20px;
+            }
+
+            .ticker-item.placeholder {
+                background: #1a1a1a;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                font-family: var(--condensed);
+                font-size: 7px;
+                color: #555;
+                letter-spacing: 1px;
+                text-transform: uppercase;
+                text-align: center;
+                line-height: 1.3;
+            }
+
+            .ticker-label {
+                position: absolute;
+                left: 12px;
+                top: 50%;
+                transform: translateY(-50%);
+                font-family: var(--condensed);
+                font-size: 7px;
+                font-weight: 700;
+                letter-spacing: 2px;
+                text-transform: uppercase;
+                color: var(--yellow);
+                z-index: 3;
+                background: var(--black);
+                padding: 3px 6px;
+            }
+
+            /* ASK */
+            .ask-band {
+                background: var(--black);
+                padding: 16px 28px;
+                display: grid;
+                grid-template-columns: 1fr auto auto;
+                align-items: center;
+                gap: 20px;
+                flex-shrink: 0;
+            }
+
+            .ask-headline {
+                font-family: var(--condensed);
+                font-size: 16px;
+                font-weight: 800;
+                color: var(--white);
+                text-transform: uppercase;
+                letter-spacing: 0.3px;
+                line-height: 1.2;
+                margin-bottom: 6px;
+            }
+
+            .ask-headline span {
+                color: var(--yellow);
+            }
+
+            .ask-details {
+                font-family: var(--condensed);
+                font-size: 9.5px;
+                letter-spacing: 0.8px;
+                color: #666;
+                line-height: 1.8;
+            }
+
+            .ask-details strong {
+                color: #999;
+                font-weight: 700;
+            }
+
+            .ask-deadline {
+                font-family: var(--condensed);
+                font-size: 8px;
+                font-weight: 700;
+                letter-spacing: 2px;
+                text-transform: uppercase;
+                color: var(--yellow);
+                border: 1px solid var(--yellow);
+                padding: 8px 12px;
+                text-align: center;
+                line-height: 1.7;
+                white-space: nowrap;
+            }
+
+            .ask-qr {
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+                gap: 5px;
+            }
+
+            .qr-box {
+                width: 50px;
+                height: 50px;
+                background: var(--white);
+                padding: 4px;
+                border-radius: 2px;
+            }
+
+            .qr-box svg {
+                width: 100%;
+                height: 100%;
+            }
+
+            .qr-label {
+                font-family: var(--condensed);
+                font-size: 7px;
+                letter-spacing: 1.5px;
+                text-transform: uppercase;
+                color: #555;
+                font-weight: 600;
+            }
+
+            .footer-strip {
+                background: #0a0a0a;
+                padding: 7px 28px;
+                display: flex;
+                align-items: center;
+                gap: 8px;
+                border-top: 1px solid #1a1a1a;
+            }
+
+            .footer-url {
+                font-family: var(--condensed);
+                font-size: 9.5px;
+                font-weight: 700;
+                letter-spacing: 1.5px;
+                color: #666;
+                text-decoration: none;
+                text-transform: lowercase;
+                border-bottom: 1px solid #333;
+                padding-bottom: 1px;
+                transition: color 0.2s;
+            }
+
+            .footer-url:hover {
+                color: var(--yellow);
+                border-color: var(--yellow);
+            }
+
+            .footer-divider {
+                color: #777;
+                font-size: 10px;
+            }
+
+            .footer-copy {
+                font-family: var(--condensed);
+                font-size: 8.5px;
+                letter-spacing: 1px;
+                color: #999;
+                text-transform: uppercase;
+            }
+
+            /* .footer-divider {
+                position: fixed;
+                bottom: 14px;
+                right: 18px;
+                background: var(--yellow);
+                color: var(--black);
+                font-family: var(--condensed);
+                font-size: 9px;
+                font-weight: 700;
+                letter-spacing: 1.5px;
+                text-transform: uppercase;
+                padding: 5px 10px;
+                pointer-events: none;
+                z-index: 100;
+                box-shadow: 0 2px 12px rgba(0, 0, 0, 0.3);
+            } */
+
+            @media screen and (max-width: 767px) {
+                .header {
+                    padding: 16px;
+                }
+
+                .header .logo-descriptor {
+                    white-space: wrap;
+                }
+
+                .hero-statement {
+                    font-size: 18px;
+                }
+
+                .context-row,
+                .showcase-grid,
+                .main-grid,
+                .roadmap-wrapper {
+                    grid-template-columns: 1fr;
+                }
+
+                .origin-row {
+                    order: 2;
+                }
+                .landscape-row {
+                    padding: 18px 20px;
+                }
+
+                .cell-label {
+                    padding: 0;
+                }
+
+                .roadmap-wrapper {
+                    grid-column: 1;
+                }
+                .ask-band {
+                    grid-template-columns: 1fr;
+                }
+
+                .ask-band .support-us {
+                    text-align: center;
+                }
+
+                .ask-band .logo {
+                    justify-content: center;
+                }
+            }
+        </style>
+    </head>
+    <body>
+        <div class="page">
+            <!-- HEADER -->
+            <div class="header">
+                <div class="logo-lockup">
+                    <img
+                        src="data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAAAQABAAD/2wBDAAYEBQYFBAYGBQYHBwYIChAKCgkJChQODwwQFxQYGBcUFhYaHSUfGhsjHBYWICwgIyYnKSopGR8tMC0oMCUoKSj/2wBDAQcHBwoIChMKChMoGhYaKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCj/wgARCAZABQADASIAAhEBAxEB/8QAGwABAQADAQEBAAAAAAAAAAAAAAYEBQcDAgH/xAAZAQEAAwEBAAAAAAAAAAAAAAAAAQMEAgX/2gAMAwEAAhADEAAAApQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA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UdU/eW+x0xzTzOl4XPPws9PpB6eYAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAf//aAAwDAQACAAMAAAAhAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAEwwwwwIAAAAAwwwwgAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAUAAAAAoAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAUAAAAAoAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAUAAAAAkMMMAAAAAAAAAAAAAAAAAAAAAAAMAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAUAAAAAAAAUAAAAAAAIQQgUAAAAAAAEcQQAAgkIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAUAAAAAAAAUAAAAAAAAAAAAUIAAAAAAAAAAAAAAIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAUAAAAAAAAUAAAAAAAAAAAAAoAAAEQAAAAAAAAAwAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAUAAAAAEAAUAAAAAAAAAAAAAUAAAoAAAAcQUAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAUAAAAAQwwgAAAAAAEYgAAAAEAAQgAAAAgAQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAUAAAAAAAAAAAAAAAAAAAAAAEAAEAAAAEEAAAAA4AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAUAAAAAMAAAAAAAAAAAAAIEIcAAQAAAAAAAAAAMgAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAUAAAAAEAAAAAAAAAAAEgAAAQAAUAAAAAAAAMAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAUAAAAAMAAAAAAAAAAAQAGBPAAAEAAAAQsQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAQAAAAAUAcIAAAAAAAAAbTDC2AAQAAAAAQAIIcggAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAQoAAAAAAAUIAAAAAAAECDDDDNAAQIAAAAAAAAAAIAAIAAAAAEAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAABDDDDDAAAAUIAAAAAAAAAwAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAQMAAAAAAAEAAAAAAARLDDDDEAAAAQoAAAAAAEIgAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAkEAI4AAAAMMMMMAAmDDDFoAAAAAAgQgAggAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAASDLSjAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAEEAMMAAAAAAAAAAAAAAAAAAAEowQEIAMAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAIIwAAAAAAQwoAAAAAAAAAAAAEYgAAAAAAAAkAAAAAAAAAwwwgAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAoAAAAAAAAAAAAEAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAgAAAAAAAAAAAAoAAAAAAAAAAAAoAAAAAAAAAAwAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAwAAAAAAQAAAAAAoAAAAAAAAAAAAoAAAAAAAAAAIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAEAAAAAUgAAAAAAAoAAAAAAAAAAAAoAAAAAUMAIEAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAwAAAAAQAAAAAAAAoAAAAAAAAAAAAgAAAAYAAAwUAAAAAAAAAAgAAQAAAAAAAAAAAAAAAAAAAAAAAAAAAoAAAAAAAAAAAAAAoAAAAAAAAAAAAAwIAAQoAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAgAAAAQAAAAAAAAAoAAAAAAAAAAAAAAwMAAQkMAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAgAAAAAAAAAAAAAAoAAAAAAAAAAAAAAAAUIAAQMIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAoAAIAAAAAoAAAAAAAAAAAAAAAAAQEAAAkAAAAAAAAAAIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAMAAAAAQIUgAAAAAoAAAAAAAAAAAAAwIIAAQAAAAgAAAAAAAAAoAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAUAAAAAAwwAAAAAAoAAAAAAAAAAAAUAAQMIMEAAAAgAAAAAAAAoAIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAoAAAAAAAAAAAAAoAAAAAAAAAAAAEAAAAAAAAAAAoAIAAAAAAgwgUAAAAAAAAAAAAAAAAAAAAAAAAAAAAQQAAAAAAAAAAAAoAAAAAAAAAAAAQAAAAAAAAAAAIAUAAAAAAAAAAgAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAIAAAAAAAAAAoAAAAAAAAAAAAoAAAAAAAAAAEAAQIAAAAAAAAAgAAAAAAAAAAAAAAAAAAAAAAAAAAAAEAAAAEIAAAAAAoAAEMMMMMIAAAkEAAAAAAAAEgAAAgIAAAAAAAMAAAAAAAAAAAAAAAAAAAAAAAAAAAAEwAAAAAAAAAAAAgAAAAAAAAAAAAAAQgIEIMAAgAAAAAwEIMMMcggAAAAAAAAAAAAAAAAAAAAAAAAAAAAUAAAAUAAAAAAAAoAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAgAAAAAAAAAAAAAgAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAIAAAAAMAgAAAAEAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAgAAAAAAwAAAAAYAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAkAAAAAAAAAAAEgAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAQAAAAAAAAAAAgAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAQEAAAAAAI4gAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAwAgMgQgAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA/9oADAMBAAIAAwAAABDzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzygwwwwxzzzzzwwwwxzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzyjzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzyjzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzyjzzzzzjDDDzzzzzzzzzzzzzzzzzzzzzzzTjzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzyjzzzzzzzzzzzzzzzzgzxwzTzzzzzziiwzzyxjTzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzyjzzzzzzzzzzzzzzzxzzzzyzTzzzzhzzzzzzzwzTzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzyjzzzzzzzzzzzzzzzzzzzzzxjzzzjTzzzzzzzzwzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzyjzzzzzzDDDzzzzzzzjzzzzzzzzyTzzzzBwzzzyjzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzyjzzzzzgwxzzzzzzzhRzzzzzzzzhzzzzzzzTzzyzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzyjzzzzyjzzzzzzzzzzyjzzzzjzyzzzzzzSxzzzwzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzyjzzzzzzzzzzzzzzzzyjjTDijzyzzzzzzzzzzyxzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzyjzzzzzjzzzzzzzzzzygTzzyzzzzzzzzzzjSjzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzyjzzzzwDzzzzzzzzzzzzzrr7zzyzzzzyzyzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzyzzzzzyzSDjzzzzzzzzy/EJOTzyxTzzzyxzTyBzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzTzzzzzzyzzzzzzzzz8kIIIJjzzzTzzzzzzzzyzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzxTzzzzzzzxzzzzzzzz0IIIIITzzwjTzzzzzzzzwjzxTzzzzyjzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzyxjzzzzzzjjzzzzzzzkoIIIJrzzzyzzzzzzzzzjzzxTzzzzyjzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzyyzTDQTxzzzzzzzzzwUIIIJfzzzzzyxzzxxxzzzzxTzzzzyjzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzz3gAYzzzzzzzzzzzzzzzzzzxTzzzzyjzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzjzzjzTzzzzzzzzzzzzzzzzzDDSxxDTjDzzxTzzzzyjzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzTwzzzzzwyxzTzyTzzzzzjzzzzTzzzzzzzzyzzxTzzzzyzzzyjzzzzzzzzzzzzzzzzzzzzzzzzzzzzzgTzzzzzzzzzzxTzxTzzzzyjzzyDzzzzzzzzzyjzxTzzzzzzzzyjzzzzzzzzzzzzzzzzzzzzzzzzzzzzgTzzzzzzzzzzzxTzxTzzzzyjzzxzzzzzzzzzzyzzxTzzzzzzzzyjzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzTRTzzzzxTzxTzzzzyjzzxTzzzzzzzzzzTzxTzzzzzzzzyjzzzzzzzzzzzzzzzzzzzzzzzzzzyzzzzzyxzxTzzzzxTzxTzzzzyjzzzTzzzzixjDyhzzxTzzzzzzzzyjzzzzzzzzzzzzzzzzzzzzzzzzzzwzzzzzzTzxTzzzzxTzxTzzzzyjzzyjTzzyzzzzwjzzxTzzzzzwQwxzzzzzzzzzzzzzzzzzzzzzzzzzzzzTzzzzjzzxTzzzzxTzxTzzzzyjzzzyjTzyzDzzzzzzxTzzzzzxTzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzTzzzyjzzxTzzzzxTzxTzzzzyjzzzzwzzzzyjzzzzzxTzzzzzxTzzzzzzzzzzzzzzzzzzzzzzzzzzzzzxTzzzzzzzxTzzzzxTzxTzzzzyjzzzzzyzjzzyzDzzzxTzzzzzxTzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzTzzzzzzzxTzzzzxTzxTzzzzyjzzzzzzzyzTzzzjTzxTzzzzzxzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzDzzzzzzTzzzzzzxTzxTzzzzyjzzzyRzTzzxjzzxDzxTzzzzzxzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzjTzzzzxxzzzzzzxTzxTzzzzyjzzzhzyzTzzTzzzxTxTzzzzzxzzTjzzzzzzzzzzzzzzzzzzzzzzzzzzzxDzzzzzzzzzzzzxTzxTzzzzyjzzyjzzzzyzzzzzzTxTzzzzzzzxyzzzzzzzzzzzzzzzzzzzzzzzzzzzzzxzTzzzzzzzzzzxTzxTzzzzyjzzwzzzzzzzzzzzzTzjzzzzzzzzzxzzzzzzzzzzzzzzzzzzzzzzzzzzzzzxyzzzzzzzzzzxTzxTzzzzyjzzxzzzzzzzzzzyTzyjzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzhzzzziTTzzzzxTzxzzzzzyjzzxjDzzzzzzzzRTzzyzzzzzzzzzjzzzzzzzzzzzzzzzzzzzzzzzzzzzzjzzzzzTxTzzzzzzzzzzzzzzzzzzzzzxzjDTCRzzzzzzzDzjTjRzzzzzzzzzzzzzzzzzzzzzzzzzzzzzyzzzzzxzxTzzzzzTzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzTzzzyzzxzzzzzhzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzxzzzzyzChzzzzyjzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzxTzzzzyyzzzzzyzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzyzzzzzzzzzzzyTzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzyzzzzzzzzzzzjzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzyzzzzzzzzQxzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzxyxDTzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzz/xAAwEQABAwAGCAUFAQAAAAAAAAABAgMEAAUGESExEiBBUWBhkaFxgbHB0RAisMDh8P/aAAgBAgEBPwD8iiSALzRVaQkm4up6ijT7TwvaUFDkb+Da4rhurUY4rOQ9zypNrOTOVpPKvG7YPL6NOrZVptkg8qVLaYuKDEzM5K+fngt1xLSC4rIC/pSdMXNfU+vb2Gwatm6wVMiXLN6kYHw2H/buCrQLKKudI3AdSBrWOWQ+4jYQD0P94KrWOZMNxoZkYeIxGtY6OQHHzyA9T7cF2jqdUR0yGh9iux+N3TUhw3ZjoZZF5PbmaQYaITCWG8h3O08FrQlxJQsXg0nWRbcJXFVo8jiOufrRVlawBuAB86RbIPKN8hYSOWJ9h60gVdHgI0GE3bztPj+iGf/EACwRAAIBAwIDBQkAAAAAAAAAAAECAwAEEQVgICFREyIxQZEQEjIzYYGhsMD/2gAIAQMBAT8A/YogZ8KFtKeYU+lMjJyYY2ba2jXDdBUNvHCMIPYyq4wwzV3p3ugvF6bLVSxCjzqCIQoEHDqEAil7vgdlWIzOueLVh3FP12VbSdnKrHrxatJzVPvsuwuxKvZt8Q/PBLKsKl2qaUzOXbz2WCVORUOqMoxIM0NTgPWpNVQfLGamuHnOXP8ACGf/xABNEAAABAIDCAwLBgcAAwEBAAABAgMEAAUGETASICExNXJzsRMUIjIzQEFRUmFxkhUWIzRQU1RgYoHBEEJwgpGhJENEZKLR4SVj0JOy/9oACAEBAAE/Av8A4O2yKB3qBTBWUVCgIfOPAsu9lJHgWXeykjwLLvZSR4Fl3spI8Cy72UkeBZd7KSPAsu9lJHgWXeykjwLLvZSR4Fl3spIpWwatGiJmyJUxE9Q1WdG5azcysii6BTnrHCMeBZd7KSPAsu9lJHgWXeykjwLLvZSR4Fl3spI8Cy72UkeBZd7KSPAsu9lJHgWXeykilMuaNZcU7dApD7IAVh8/wAl2UG2lLrs6beZN9J9LOiWRiZw2VM8kl0oah/ACXZQbaUuuzpt5k30n0s6JZGJnDZUzySXShqH8AJdlBtpS67Om3mTfSfSzolkYmcNlTPJJdKGofwAl2UG2lLrs6beZN9J9LOiWRiZw2VM8kl0oah/ACXZQbaUuuzpt5k30n0s6JZGJnDZUzySXShqH8AJdlBtpS67Om3mTfSfSzolkYmcNlTPJJdKGofwAl2UG2lLrs6RS5WZN0iImKAlNXuo8VXnrEf1GPFV56xH9RjxVeesR/UY8VXnrEf1GPFV56xH9RjxVeesR/UYWTFFY6ZsZDCUbyiWRiZw2VM8kl0oah9AgAjiAYBJQcSZ/0gUlAxkN+kCAhjD3cl2UG2lLr4lMcoOtKbXeUSyMTOGypnkkulDUP2t2yzg1ygkdQfhCGlF3SmFc5EQ/UYQoszJwqiqg/pBJBLi/09faIx4Fl/spIVo7Lj4kzEzTQ4omX+mciHUcIfyl2yrFZIRJ0y4Q4m0lD51Vsbc1XObAENqJmHC5cAHUQIQo5L0t8Qyg/EaE5czT3jVEPywVJMu9IUOwPtOgkffpkN2lhaTsFt82TDNwQ7oqkasWqxiDzHwhD6TPWdYqJCYnSJhD3Zl2UG2lLr4lMcoOtKbXeUSyMTOGypnkkulDUMNm6rpUE0CCc48gRLKMJkqO+Ndm6BcUJJERIBEiFIUOQAvxCsKhwhE7o6VQDLMAAp+VPkHsgwCURAwVCHJbFKJjABQERHkCJdRldcAO7NsBebGaGMpZs6tiRAT9M2EbSaSBq8rOn5FbnLiH5RMZeuwVuHBewwYh915dlBtpS6+JTHKDrSm13lEsjEzhspww8ItyI3dwW7Awj1QyZoMkrhumBQ/cbOlUp2UgvG4eULwgc4c9rKZQ4mJtwFwlyqDEtlTaXl8kStTlOOO3dtknaIpLkAxBidylSWq8p0Db0/0H3Wl2UG2lLr4lMcoOtKbXeUSyMTOHiwhWFQ4onzHaExOQODNuidlnIJCLq5cO9yhyF5Tf8hMhUyAQhQKUMQBxFygm5QOisW6IaJqxPL3hkT4sZR5w91ZdlBtpS6+JTHKDrSm13lEsjEzh4vTFrssvKuAbpI37DZUaku2anToPIhvS9KAwBg4nSVht1gJih5ZLdF/17qy7KDbSl18SmOUHWlNrvKJZGJnDxd6iDlosiP3yiECFQ1DYSCWDMXe6DyBMJx+kFKBCgUoVFDAAcVn7Xac0WIAbg27L2D7qS7KDbSl18SmOUHWlNrvKJZGJnDxicpbDNHRPjEb9IhlVCkIFZjDUARK2RGDMiJMeMw842Tp0i0Tu3ChSF64d0rIAiDVATfEcaoNSd+I4NiD8sNaVLFENsokOHOXBDRwm7QKsga6IawpulhbK9pfdSXZQbaUuu0FdEBqFVOvOjbCHrk+9G2EPXJ96NsIeuT70bYQ9cn3o2wh65PvRMML9yIYtkNrvKJZGJnDaGUIUajGKHaNpS0lxOT/EUBv6GsdkWO7OGBPck7bKezkkuJcEqO5HEXm6xh05Wdqio4OJzdd5QhU38Sl93AawpmWuVkNzKB7qS7KDbSl12kwGt+4zxsqJZGJnDZ0gn5iHM2YGqEMBlA+kHUOc10cxjG5xGKMzdRByRsuYTInwFr+6NnTUtUxSHnT+t8GEagiUtAZS9JHlAKzdtjOH5ZcyMqOE+Igc4wsqdZUyipro5hrEb2iDMUGJljhUZYaw7LCmZqpYQvOoHupLsoNtKXXaO8LtbPGyolkYmcNlSN4dlLDnS35huAHm+0oiUQEMYQzV2doir0yAaypuH8W3H4PrfUdbbZmyIDvS7sflZUud7PMdhDeI4Pne0fkRnZirugErfkDpwUAKUAKFQBYU3W3bZHmrMPupLsoNtKXXaOOHUzhsqJZGJnDZUzySXShqG8k2SWeiLqsqb8O2zRvqEI7tyvzABLJ4psrtZQfvHEftZSl48q2JEQL0jYAiVUcQaiCjkdmV5vuhYiIAAiOAAicO9uzFZb7tdRez3Ul2UG2lLrtFeFP22VEsjEzhsqZ5JLpQ1DeSbJLPRF1WVOOGa5o31D07iUAbpnEfpZFomAnEVHWD4SwlRdkTfmVP84bStk2wpN0wHnEK7OlkyBFvtRIfKqb7qD3Vl2UG2lLrszb0YU4Q3bZUSyMTOGypnkkulDUN5Jsks9EXVZU44ZrmjfUeLcSZqHw18Wnk2TlyNQVGcG3pfrCyp1lTKKDdHMNYj7qy7KDbSl12Z94bsg++GyolkYmcNlTPJJdKGobyTZJZ6Iur7Xs+YtRudk2Q/MnhhWlhq/JNQq+I0HpQ+EdyCRfywFJ34Y9iH8sJUsVDhWxRzTVQzpGyXqBQRRN8eL9YIYpygYggYo8oRTjhmuaN9J8lNNEXVxWdUgTagKTQQUX5+QsLKnXVMoqYTHNjEfdaXZQbaUuuzU4M3ZBt8NlRLIxM4bKmeSS6UNQ3kmySz0RdUTSaN5cnWqNanIQMYxM5w6fiN2e4S9WXFfsZg5YnrbqiAdHkGJ3MwmZW5ri4UIAgYOS+k2GUtNEXib+eMmgD5TZT9EmGJnPnT2spR2FLolH6+7Euyg20pddmpwZuyDb4bKiWRiZw2VM8kl0oahvFZuWWyRmUlRnBkS3Ic2DHC6qi6plFjCY5sYjb0bPdyVsPMFX72wmAMYhC0yZo8I5SD80OKSsE94J1R+EIc0rUEKm7cpesw1w8mjx3wy5hL0QwB7tS7KDbSl12anBm7IHGNlRLIxM4bKmeSS6UNQ3hjCbfDXycQoYtdy06fKmfXZOSHUbnKkcUziGAwckOZpNEVjpKuVAOQahgZo+H+qV70Geujb5wsP5xgxhNvhEfd6XZQbaUuuzMFYCEKBUoYOYbKiWRiZw2VM8kl0oahsCEMoNRCiYeYAhOUvT/AMkQ7Y8CPegXvQtLnaQVnQPV1YbGha9w/URHEoX9ws6QScsxT2RKorkuIel1QskdBUyapRKcuMB94JdlBtpS67SfthazVctW5MN2XsG98GutpmdCkJUS8o3tEsjEzhsqZ5JLpQ1DfJkMocCplExh5AhhIQqA7wcPQCEkk0i3KRCkDqC8dMm7oPKphX0uWJjJlG9Z0PKJ/uF+xcC0dpLlxkNXCRyqplOQaymCsLOZyxvMSVLFqMGI4YwiYUeeNazJBs6fOXH+kCAlGoQqG+KUTDuQEYayV+53jcwBznwQ0opyu1/ypxOJC3JKzbUTqVT3VfKb3Vl/n7bSF12k4laUzRAD7lQu9PC9Gn6ZtwUigc4GglHZiYeBAO0wQ1ooqI/xK5ShzEwwxkrJnUJErs/SPhGF0irInSPhKcKhh2gZs5URPviDVeUSyMTOGypnkkulDUN6ikdZUqaYVmNiiWS9NknzqjvjWE7lQGKLhsXdfeKHLf0Pf7K3FooO7Twl7LVdo3ccMimftLCtHZcoOBMxM00Goo05Flw+Yf6jxUa+vW/aCUXYFxisbtNCMjlyWJsUc7DCSCKPBJEJmlqvKRMdozEwFDySm6J7qJGuFCn6I1wQbohTBiEK+I0zZ3DlN0XEpuTdt5RLIxM4bKmeSS6UNQ3tHWWxIbYOG7Pi6gsp+x2s42RMPJKfsN8ycnaOk10t8QYYuk3jYi6Q7k37cWpKw27LxEgeVS3Rf9e6tH19sShublAtwPy4jOWm3Zcql96qsvbeUSyMTOGypnkkulDUN4xQ2w7SS6Q4eyAAAAADEFlN0NsMFS1boAugv6PzQZc5qPXtc++Dm64IcqhAOQQMUcICHFqSMdpTE1yFSSm6LfUaZIPnh03JRMUCV46o8XJb6o3fGPFyW+qN3xjxclvqjd8Y8XJb6o3fGPFyW+qN3xjxclvqjd8Y8XJb6o3fGPFyW+qN3xjxclvqjd8Y8XJb6o3fGPFyW+qN3xjxclvqjd8YpRLWzAG+1iCW7rrrGv3BoU7qMs1MOPdl+vEqSM9qTRS5Dyam7L9tEsjEzhsqZ5JLpQ1DeUYTunhz9Eto7JsTpUnRMIX9Hp0LE2wuBEW4/wCEEMU5AMQQEo4QEOK0jY7dlxrkPKp7st9QvKKujtac71n+b6e4LJwZo6TXT3xBrhquRy3TWT3pwr4jS5ps8u2YA3aI1/L7aJZGJnDZUzySXShqG8opv3HYFpN8pOM6wkk6Vl5gIetRt0ebshm6ReIgq3OBi8VpKw2lMREgeSV3RfqF7QvKKujtac71n+b6e4VGJttNXa64+QOOAeiPEVCFUTMQ4VlMFQw9Q2s7VREa7g1Vf2USyMTOGypnkkulDUN5RY9TpUnSLaPj7K8WPznGxZO12SuyNziU2uJXSRBxUR15FXn+6MANYVhxJw4RbEul1Cph1jFJJuzfNthRKcximrA+IL2heUVdHa053rP8309w6Pz7a1y3eDWj90/R/wCQQ5VCAYggYo4hC1cu27Yta6xCdow9pSiTA0TFQekbAEPZ09d4Dq3JOiTB9tEsjEzhsqZ5JLpQ1DeS1faz5JTkrw9lnMl9rsVVOWqoO20l82dscCKlZOgbCEMKTt1aiuyiibnxlhFZJcl0ioU5eco2rh43bBWusQnaMO6UNE6wQKdYf0CHdJHy+BMSol+EMMKqHVPdKnMc3OYa76heUVdHa053rP8AN9PcSXTR1Lx8ifcdA2KGNJWi4VOK0D9eEISVTWLdJHKcvOUa79RQiYVqHKQPiGqF55L0cbgDDzFww6pWUMDZuI9Zxh3Pn7jBsuxl5k8EHMY5qziJh5xvaJZGJnDZUzySXShqG9kD3bDXYzD5VPB2hZUje7MsCCY7gmPrG2SVURNdJHMQfhGqG1IpghjUBUPjCEKWB/PbD2kNCVJZeffGOTtLBJ3LjYnRPnBZkyNidI96PCDP2pHvhAzNkH9Ul3oGdS4P6okKUjlxMSpjdhRhalaAcC3UMPxDVC9KXh+CIkn+4wvNXy/COVOwBqgwiYazDWNjQvKKujtac71n+b6e4ySqiJrpI5iDzlGqEZ/MUv592HxhXBaUvQ3xER+UeNbj1CUDSp16pKD0mmBsQpF7CwtOZgrvnSn5dzqg5zqDWcxjD1jYymkHg9mVDa93UIjXdR42/wBp/nHjb/af5x42/wBp/nHjb/af5x42/wBp/nHjb/af5x42/wBp/nHjb/af5x42/wBp/nE5nvhJoCOwXG6uq7qu9auDtlyqp4w/eGDxN4jdpjh5S81hOpmDYgoojWsP+PoWheUVdHa053rP83095mzhRsqB0TXJoYTpFcLlfySn7DACAhWGELxVVNEt0qcpA64mU8rAU2eD/wBn+oEREaxwj6FoXlFXR2tOd6z/ADfT3oQdLt+BVMWCT52XfbGbtCPGBx6tOFZ28UDAYpM0IUUOqa6UOYw9Y+h6F5RV0drTnes/zfT8AARVHEmcflBWTo2Jur3Y8GvfZVu5Ay92XG2W7sC3WLjRUD8sCQwYyjbULyiro7WnO9Z/m+nuaQhjjUQomHqhOWPlN61W+ZaoLIZkb+mEO0wR4uTH1Re+EeLUx6CffjxZmHMn3o8W5j0Cd+Bo7Mg/kh3gg0jmJf6U3yEIPLXpN81W7sHRUT36Zy9oehACsagxwzkD9zUOxbGUeU+CG1FEQq2wucw8xMEIySXpYmxTZ2GE26KYeTSIXsC+EoDjAIUbIKBu0UzdpYUksvUxtSBm4IVowxPvNlT7DQtRP1LrvFhejT9PeFIpmmheXu0OFbql/LYULyiro7WnO9Z/m+nuS3bLOTXKCR1B+EIa0XdqYVzERD9RhCizMnCnVUHtqhGUMEd41T/MFcEIUgVEKBQ6gs1WTVXhG6Ru0sKyCXKfyLnNGFKKtB3iqxf3haiaocC4IbOCqF6PzFL+SCgfANcLN1kOGSOTOLVfNygddMpsQmAI8Wpf0VO9Hi1L+ip3o8Wpf0VO9Hi1L+ip3o8Wpf0VO9Hi1L+ip3o8Wpf0VO9Hi1L+ip3o8Wpf0VO9Hi1L+ip3o8Wpf0VO9Hi1L+ip3opPLkJeqgDYDABwGusa7KUUfXegCi/kUP3GGEsasQ8gkF10xwjxFwybOOGQTP2lhxRliphT2RLsGJhRtZqiosRYh0yBWNeAb2heUVdHav5e3f3G2Sia4xYY8XZd6o3ejxdl3qjd6PF2XeqN3o8XZd6o3ejxdl3qjd6PF2XeqN3o8XZd6o3eikzJFi9Im3LclEleP0/L5I8e1GKS4TH754YUbaN8K1a5/ixfpCaZEi3KZSlLzAHFKU5EX+Wu+aedo54a7WnHDtc0bAMI4Io/ISolBw+JWqO9IP3eK0sW2KUGLyqGAt7QvKKuj4rTTKSWj+vp2XS9w/UuUCYOUw4giV0fbM6jq+XW5zBgD5cXpTkRf5a75p52jnhrtaccO1zRsKJykDVPXAYP5YfXi1N1923Q/ON7QvKKuj4rTTKSWj+vpyRyFR7Us4rTb/uaG6KbdIE0SAQgcgcYpTkRf5a75p52jnhrtaccO1zRv5c2M8epIF+8OHshJMqSRU0wqKUKg4tSZbZpyvzE3AfK9oXlFXR8VpplJLR/X03RyR7PcunhfJYykH73/ONUpyIv8td8087Rzw12tOOHa5o39CW9arhwP3QuQ4sqcE0jnHEUK4WOKqxzjjMNd7QvKKuj4rTTKSWj+vpqjMo24rthcP4cg4ukPG6U5EX+Wu+aedo54a7WnHDtc0b+iKWxygpumYR4tSJbYJO4HlMFz+t9QvKKuj4rTTKSWj+vpmUsTzB4VEu9xmHmCEEiIIkSSCohQqALV07QaFunCpU+2HVKWxKwbpnVHnxBDFcXLNFYQqFQoGqtKU5EX+Wu+aedo54a7WnHDtc0b+jwXMma5vFqbrVN26PSNdDfULyiro+K00yklo/r6Zo3L9osQMcPLK7o3V1WiihEiCdQwFIGMRibUmMYTJsNyX1g4/lCqh1TidU5jmHlEfskuSGmjC0pTkRf5a75p52jnhrtaccO1zRv6OGupK1zav34tS5bZJsJORMoFvqF5RV0fFaaZSS0f19MUaZbcmRboK0k90a0XWIgiZVU1yQuERidzdWYq1BWVuG9J9RvJLkhpowtKU5EX+Wu+aedo54a7WnHDtc0b+h62ySq45UziFqLhEBqFVPvQQ5D7wxTdg2ExW2w+XV6RxvqF5RV0fFaaZSS0f19MUTabXlgKDv1t18uS0pXM9sONqpD5JMcPWN7JckNNGFpSnIi/wAtd8087Rzw12tOOHa5o39DXQJPToGHAqGDtCzn8/2ooLdoAGWDfGHEWHLxy5NWusc/aP2AYwYhEIQmj5Dg3KnYI1w1pUuTA4RIp1hghjP2LrAJ9iPzKYP3gBrxfbN1tryxyrygTB239C8oq6PitNMpJaP6+l2qIuHKSRcZzAEEKBCFKXEAVBZzt7tGXKKhv96TtgcI4b2S5IaaMLSlORF/lrvmnnaOeGu1pxw7XNG/RVMisRRMajkGsIlzsj1mmuTlDCHMNioNymYeYIUOKihjmwmMNY37KYumQ/w6xgDo4wiXUoSUqI9JsZumXFCKqaxAOkcpyjygMUzXuJcRLlUPqv6F5RV0dtM5++bzBwkmJLghxANzHjLMOkn3Y8ZZh0k+7HjLMOkn3Y8ZZh0k+7HjLMOkn3Y8ZZh0k+7EwfLP1QUcVXQBVgD0vRBDZZrdjiSKI2lNXN05SbgOAgXQ9o30lyQ00YWlKciL/LXfNPO0c8NdrTjh2uaNhR6aDLnNyp5upvurrgpgMUDFGsBxDYCFYVRMWxmj1VE/3R/axZPXDJS6bqCTq5BibzRSZ7DspAKKYcnLf0Lyiro7ad5Xd6QfT1CEqmzhXpGubSfq7NN3Jviuf0vpLkhpowtKU5EX+Wu+aedo54a7WnHDtc0bGjk72oINnQ+QHem6H/IAQEKwwhYUnlIvUQXQD+IJydIIHBj4hQvKKujtp3ld3pB9PUUT2OTJj0xE1o4NdrqG6RhG+kuSGmjC0pTkRf5a75p52jnhrtaccO1zRspHPFGFSS1Z237lhuum5SBRA4HIPKFhPpCV5Wu1qK45Q5DQuiogqKaxBIcOQbeheUVdHbTvK7vSD6ekRbiUNQ+CuzHEMDjG+kuSGmjC0pTkRf5a75p52jnhrtaccO1zRs5bMXEvVu0DYBxlHEMSmct5gUCgOxr8pB+lg/YN36dy4JXzG5QiZUZXRrOzHZidH70HKYhhKcBKYOQbWheUVdHbTvK7vSD6elmTWuiLqtHBbhdQvMYQvpLkhpowtKU5EX+Wu+aedo54a7WnHDtc0bQoiUQEo1CHLEppKojUm+rUT6f3g/3DZwi6Tu0FCnL1WD+XNnxal0wEekGOJpRxw1rO2rXS6g3QRis6F5RV0dtO8ru9IPp6W5Oa6Iuq0naexTZ0X46/1vpLkhpowtKU5EX+Wu+aedo54a7WnHDtc0bZo6WaKbI3UEhuqJXSZNWpN8Gxm6YYoIYpygYggYo8oWE1kjZ/WarY1umX6xM5Y4l56li7jkOGIbKheUVdHbTvK7vSD6elmTWuiLqtKYobHMwU5FC30lyQ00YWlKciL/LXfNPO0c8NdrTjh2uaPEJfM3TAfIKbnoDiiV0hbO6iLeQV68Q/OwVTIqmJFSgYg4wGJ1RwyVazCsxOVPlDsgcGOwoXlFXR207yu70g+npAfZJO1H4arSmLbZZcVYN8ib9hvpLkhpowtKU5EX+Wu+aedo54a7WnHDtc0eJSmeuWNRDDsqHRHk7Il0xbzBO6QNh5SjjCwn0hK7Ay7UAK45Q5DwoQyZxIcBKYMAgN/QvKKujtp3ld3pB9PUOVu5UJOgcQtF0irInSPvThUMO0DNXKiKm+INV7JcktNEW0pTkRf5a75p52jnhrtaccO1zRsSkMYBEpRGrH1WSCyiCoKInEhwxCESKfFeVIOqiOOQeQ1hSCTFfk2VGorkv+UHKYhxKcBAwYBAb6heUVdHbTnDNnmlNr9PUKcXLtZAfvlug+VrTCXXZAepBui4FOznvCFE5wKXGI1BDZPYW6SfRKAWlKciL/AC13zTztHPDXa044drmjY0JR3DpUQwDUSJvRtNe6VZVJKdD7ow7arNFLhwmJDddlRebi7JtZwPlihuR6QWFKpTs6YvEA8qQN2HSC+oXlFXR20yGuYuh/9htfp6WuBaPkVw+6bD2QAgYAEMQ2hgAxRAwVgPJFIJKZioKqACZsP+H20VlpnLsHCgeRSw9o2tKciL/LXfNPO0c8NdrTjh2uaNjRhDYZMjzn3Y/Y5bIuktjcJlOXriZ0YMWs7A12HqzY4VSOicSKkMQwcg2DRczZymsnviDXCRwUTKcMRgrsKSy3aLy7TDyCuEOoea9oXlFXR2z3zxfPHX6foo+2yw2I4+VRwfLktTABgEDBWA8kPKNslz3Sd0iPwYob0XaJnrVOor1YghJMiSYETKBSBiALWlORF/lrvmnnaOeGu1pxw7XNGwTIKihSFxmGqEEwSRImXEUKrx2zbvCXLhIp9cTGixy1mYnug6B8cOGyzY1yukdMesL+W1hLm1ePYy6rCes9vS1RMA3Ybonbe0Lyiro7aak2OZOi8yhtfp+UPRYPiLfdxGDnCEjlVTKdMaymCsB45SnIi/y13zTztHPDXa044drmjYUdR2ecNw5CjdfpfqpkVJcqkKcvMIQ8o0zXwo3SBurCEO6MvEuBuVg6sAwuzcocMgoTtL9skkazxUqi5DJtww4fvdkBgCoLGfN9rTZwQN7XdB87yheUVdHbUwZCk92yUPJq4+ob1lKnj0fIojc9I2AIZ0WSKQdtKXZxDABcABC6RkFjpH3xBqH0zRSbbEbabg24NwYjyDzccpTkRf5a75p52jnhrtaccO1zRsKEIVruFx+6FyFmZuiffIpj2lhNsgmNaaKZR6igFnTRO5mKZ+kneULH/wAmoH/rtl0k10jJrFA5BxgMOqKoHMIt1jJ9QhdQFEjcrsO5/wBhCijcvDLqH7MENZOxbDWm3Ldc5sP20xabE9I4KG5VDD2h6ao5PAXArV2NS2Ipul/3jdKciL/LXfNPO0c8NdrTjh2uaNhRJDYpQU3KoYTcXpv502zLyiqmxzpL4wEvFZ+z25LFSAG7Luy9vpoMA4IkNIa7lu/N1FV/3AYQwcZpTkRf5a75p52jnhrtaccO1zRvwwjVDFLYGaKXQIAcXpirdzW46BAC8YrbXeIq9A4DADWFYYuKz9ptOaKkANwbdF9NyiduJfUThUOgPJ2RLpm1fl8gfd8pBx8YpTkRf5a75p52jnhrtaccO1zRv5Ihtiatk+S6rH5YeMTZxtqYuFgxGNgvaOudsylEa90TcD8uK0xZ7KyI4KG6SHD2enCHMQwGIYSmDlCJfSZwjUV0XZy8+IYZTti6wFWuD9E+CAw4uK0pyIv8td8087Rzw12tOOHa5o39C0bt8qt0CVfrxekTzacsUEN+fcFvqHvtgeGbnHcLYs7iq6RVkTpn3pgqGHSJm7hRE++INXp2VSFy9qOp5FHpCGEeyJexSYo7GjdVc5hr4rSnIi/y13zTztHPDXa044drmjf0NQuJcdXlUPq4vSWY7efCVMfIJYC9fXfEMJDgYo1GDCAxJZgWYMiqfzAwHDr4rTNncOU3RQwKbk3b6bboKOVQSQIJzjyBEmo8k0qVdVKrc3IWyndIioCZFjUdTEJ+QIlJzKSxsdQRMYyYCIjaUoyIv8td8087Rzw12tOOHa5o38kpCi2bJtl0hKUmC7Lhhq7QdFum6pTh1DxWlE4BIhmbYfKDgObo9VhJ5geXOwULhIOA5ecIauE3SBVUTXRDcUpEkkrKVgVOUtQXRax5fTTBks+cAkgWseUeQIlMsQlyVSYVqDvjjjGxMIFAREagCKQT4zgTN2ZqkcRj9L7JLkhpowtKTZDc9gawvmogDlIRxAcI8JMvake9HhJl7Uj3o8JMvake9HhJl7Uj3o8JMvake9HhJl7Uj3o8JMvake9HhJl7Uj3o8JMvake9HhJl7Uj3o8JMvake9HhJl7Uj3opg4RcLNhQUIpUUa7kbBM5kzXSZhKbnAYZUjet8ChgWJzHhnSZmtgXAyBuvCEIOEXBbpFQhw+EeIz2kIEAyDAaz4jKc3ZAjWNY47GTzZaWq4N0iO+JDF4i9R2Rue6Dm5Q4gI1BWOAIez1i1rDZNkP0U8MPaUOVMDYhUS8+MYcOFXB7tdQxzdY+mWbZR24IiiFZzRKmCcuagknhN943ONlSWdbYMZq2HyIb43S/59slyQ00YWlJshuuwNYceIcxDVkMJR5whtP5gh/O2QOZQK4a0rIOBygIdZBrhvPJeviXAg8x8EEUIoFaZimDnAbIwgUKzDUEPqQMmtYFPsx+Yn+4mk6dP9yI7Gj0C/W0aOVmiwKtziQ4RLaTpKABXpdjP0g3sJKkWIB0jlOUeUBs1l0kArWUIQPiGqHVI2CO8MZYfgCHdKXJ8DZMiQc44Rh09cuhrcLHP2j6co3K9otdkUD+IUx9Qc1lSuabWR2qiPlVA3Q8wXklyQ00YWlLDXMlV6xAPQRFDpjWmYxR6hhGcP0d65OOdhhOlD4u+Kkf5QnSw/wDNalHNNBKWIDv26gdg1wFKmXKm47of7jxpY9Bx3Q/3B6VtQ3iCw9tQQpS0f5bXvGhek75QNxsafYEOXjh0P8Qsc/aPEG7lZse6QUMmPUMNqTvU8CoJqh1hUMIUrbjwyChM3DBKRS0384S9pBgJ1Lh/qk48Ly/2tL9YNO5cX+qJ8oUpJLi4jnPmkhWliIcE2ObOGqFaVOh4NFIvbhhzOn7jfODFDmJggxhMNZhER6/T1FWO23+yHDySO6+fJZLqlQROqpgKQKxh64M7dKLqYzjXeSXJDTRhaU0PVLkydJT8BaNtNqypPpqbsbKmC4pSu4D+aaq9kuSGmjC0pwpumqfab8BGSO2HaKXTOAQUAKUADEFlTgdy0Dk3V7JckNNGFpSxbZZwcvImUC/gJRVPZJ0j8ICb9rOmydbRBTonqvZLkhpowszCBSiY2IMMPFhcOllR++YTfgJQwP8Ayp9GP0s5u027L1UfvCFZe2DAJTCBgqEPtAKxAAxjDNPYWiKfQIAWdJXG15QtUNRj7gPwFoZlU2iHWFpSiTGMYXjQtfrCBr+2jTEzyYkMIeSSG6MNpTJ3sjsjYo7lIKx7R/AWiR7mcph0iiFrMZA0eHE9QpKDjEnLCdEyXXlHJhL1Fhm1RZoAk3JclD97N4uVq2UWU3pArhwqZddRU++ONY/gLJFNimzU3xgH68apjMLo5WSY4C7o/bzfgMQbkwGDkww3UBZumoGI5QNxicvyy5kZUcJxwELzjCpzKqGOcazGGsR/AeiD3Z2O1zDu0f8A+eLuFk26JlVjXJC4xicTA8xdiobAQMBC8wfgRK3pmDwixMQb4OcIbLpuUCLImrIbFxVZUiKZlFTAUhcYjE/m5pitckrK2LvQ5+v8CpBNzS5a5UrM2NjDm64RVIsmVRIwGIbEIcTfPUGKOyOD1ByByjE4m60yUqHcIBvSfgZJ5stLVNzu0R3xBiXzBu/Su256+co4w4gIgUKxGoImlJEG90Rp5ZXpfdCHblZ2sKrg4nOP4HILKN1AUROJDhyhEspQA1EflqH1hf8AUN3CLkl2goU5eobRZZNAl0scpC85hh/SdulWVoUVjc+IsTCau3/DKbjoFwB+CSC6qB7pFQxDc5RhnSd2lgcFKsX9BhvSZipwl2kPWFcIzJmtwblIfnVACAhWA1heKLJpcIoQmcNULTqXpb5yUR+HDDmlTYnAJHVHr3IQ7pK+WwJ3KJfhDDCy6q5rpZQ5x+Ia/wAGCqHLvTmDsGCvnZN65XDsOMeEHvtbj/8AQYM6cH366o9phgREcY//AA3b/8QALRAAAQEFBQgDAQEBAAAAAAAAAREAITBR8CAxQWGhQHGBkbHB0fFQYHAQ4dD/2gAIAQEAAT8h/wCDtj3EgxBBqs+Wqz5arPlqs+Wqz5arPlqs+Wqz5arPlqs+WXQGFPCQytaMrTarPlqs+Wqz5arPlqs+Wqz5arPlqs+Wqz5YjRPBcn4AoskOszQ6bP8ACilFkh1maHTZ/hRSiyQ6zNDps/wopRZIdZmh02f4UUoskOszQ6bP8KKUWSHWZodNn+FFKLJDVDbqMmpzs1Odmpzs1Odmpzs1OdmMMCYBcoKWKbP4spew3Br2G42uB7za8Ab/AK5RZNirM9imzilOJkBGDgsYdoO1ZEOIngdPLXGG8u7OU67LqpMjGqSWb1HhiYA+xw47GQRTw9YslB+ePM+GTCDY9oI3TwltJ9H9Bpu6LCiuHEF6MGwNi1r+rJIKqw+s0WTYqzPYps4ZTDrwdWC41LIO84tdUiRC2AwQRxBYOZhQ+kWKUKQkEIMY2dkAFJZaAyqeGBkKe1w4REULYXMY45BnNyfq9Fk2Ksz2KbOEv6BJKUA3c2mzI37wwxo6BQ1CIqjQS4u4TLCl0I9n4j4N5DgZjNlaFK4u7n1aiybFWZ7FNnswjBBIIQcWQP1phwhp5N7d+FgBRoAgA2EbANCGf6drz9VosmxVmexTZ7O+KejwjqkJWRWfY5nJgAAAADgBsY1bULiRjSX1WiybFWZ7FNns/fIVHMQgEIcYAosuJqXEwrQqC4DZXaxKDNR9UosmxVmexTZ7QhtwE3F/e2U8MExJZJoh1OYW+vS/cMWE2cOgNdLyCu7DpYvewyNhKDLI5wBgMPK+hHf6pRZIhQCC8EG9Tb1NvU29Tb1NjBYCRgRi9Yps4gkWm4ACxBkCvHa2BVr4nvPAdYTjo3jqlzHI2a7ISsGLkkURI3HtygCxIbmD9UoskRYT68Kmzh8cgGl5MREh5UFiBXC1ZSZQ8hXqtAQAUlwDCGBxgd8EQwI1DPFIYmyn2IBlu6mALFjuQP1SiyRDUz6sKmzhOiBs0V/IFi8v/hS0IoIwb3MQhbzGLQQ+paG9IR1dzzXntZBlJUrj/hghAkAGAgCIReAW9w7/AFSiyRCU9CwqbPaCgAvaFtKkYBxeeghEfQ87P9Pka1+PBgmhPCHm7Fg4IIBmQApJwZOCV8DcPPH6pRZIZuZ/fesKmz2goBSZ2nKv5X/iEQQoqlzzLJR32IGgYgAzMOZhnTqXa3/VaLJD0DahCps9oKAUmdrNbXJPfZio4bd5smIvUhifqtFkh6w2rMKmzjFKBJ/CQApKBjIk26bzcy4km8YZ1v3j3Y1qv9skDOyMPlfJ0O7PUIAigtSZ2hQeyi60Yg/znJjw2Up5+rUWSHqTaiFTZxygD4mD/wCgZsGiEuKnFO2OYzE/hMvFMCTFo1NCbESgU3MFCIcdXE3BjZEueO/F9YoskPUG1EKmzjFB3q43DiMUKylXx8znlIRgShDMstrwwAE8gwUyo5GrF1JVAjKYPPQD61RZIev9G10KmzjFDYJCAALIOA2ACq88nvMLOGkzBiMkAcOzKiv2agnkYkpTMr9eoskPMQIy3YghU2exFN/fUWCKBc4DEAvOBt7gB2MQQUIQwFSIpAowJhuQA8uCbyx4bIE8fYKLJEOlG8FBFm53GCqyFmmz2Ao5yAAKSwigvLu4lstApWDEGlgCBxYeUR3hPdburQiYxHJkTzGmDD3FyrRxBdy3+DLhSCEtIQhIBWQCR5XVhoHuR3PhiXPAoBeDw+qmhjUEQ8WGgpGRmGNBKaGhZCHNslVL4rVkoA11wYDqqLItePk887FNnHKLI8gMNoAN/iMoCaoX4ZMZ2xTZnH/J6xecaIljglDNGjEnWBlT4NpEnYMUUznPWwzkR/RfezmjhQxHD6oUdeHkLBMFAA7ChB1wF2nSxTZxyg7pd+l8IA0DwAcQWiYIsSYxDKMgXYliDszzhbOn9VBUl44c8bCNPXhY3MQQSC4j+02cYoYZd5TRhNgAQAYQkdVxCLa4yOk5IwhZqCgjZtJ58xztJuCQCeUSarO7VZ3arO7VZ3arO7VZ3arO7VZ3arO7VZ3arO7VZ3YzmCfqkRL9/wBBBJS03bElENSvHNf7TZxiizj/AHiJvcE3LbGDncbyU9zDWqoKCNlvuaLeOIta51EXVfQbq2EMRyYgKij42EfcwXHt/abOMURm+WIl1AqpAvx5/BigHK8ZEYbK6I4UfJ1s651EXVfQoM54525gQQoeDsCywBTBY48UIYjD+U2cYoE7PHA/7ERa4wblghOPQwyEYsl8Gd5GHFgAICDcRsWePUl3TZERidCednXOoi6r6HFAsF14cpYIeKkKDFQWeMeDLlfML+jCyabL+f7TZxiix3U75xa+6E+pzjDhENgilZMPkJvO4YYM0xF3Ue/5NmZ1Os/RgBIlQli4w3kFa1zqIuq+iQy/W98fjgwwCkVbKJAC3m9QDF8CmCellbcnDkGV3thdd7FBpvIps02ccoATsqXgHtCAohXxS6Nnh0jEgCuC2oezmBpqND5YAFORz0a4RuEdmALyEMRMF7ck188NT2ZYUWw07hA92UAFmh1naMcLmZLyDFJBLySsHXOoi6r6NZsfJaMIAdMA6r264od2Cb1t5ZGUHzaoF3sBQYZvAxyeMVoO6UCv4NR6NR6NR6NR6NR6NR6NR6NR6NR6NhCjkAOWdkzqHukkwMmC+vOANEGhIw+WJUqb/hNc6iLqvs0SKDkciwsQZx1mAiglxFjPIJoz2qnEr+DuxmUkeScfhdc6iLqvtEeXIwXcmEIGaidGKTl+LJQLXex4U8Vvh9c6iLqvv8ASUAUtpvG16fjb2Zrq3G2vQTXCd4ja51EXVfTbI4gK3VMdTdMA7sD4LAJgcDFnkWPwNjDu8zXsXeO7dNRno2tRj4QggElcAwDMb6L2CljoAHmVYeFqa+tkECyRavJbwyOEZBYUnHnSy8o28GoYt4jknqGUkMZHVlNEGKiOYga51EXVfSbjxAZLkKTpB2rAAdyAMlKTPuWycYhCIBvDKq9MK82Xr+ZQ2tyR2MtGWA+oKy6QAxDovY8hfMtL07G4mK1rWta1rWtaTYFJCIRRiR4JHLHdgUCYnrx2EGV44gXnex0qJwXA5scDBIUrOudRFHg9DpBF9N7y3vLe8t7y3vLe8t7yxJQQwVPU/P8ACZwOAvLI3LSrNhENSQ2Sny2qrJFosxAAgAEkuADDMPj0N7PZU+Oibz0s651Gy6T1fOqvEJbflksAD9IbOp8tqqyRaLMQHioF+K7tmUDNwINB3s651Gy6T1fOGMbRhucs2ub17QU+W1VZItFmLclfKWI8mS0MKQGzO4VS4R+q2dc6jZdJ6vmzl7Cg0VgAAAAgGG00+W1VZItFmLYhh4D73noNmvEyfAMcdSz4mzrnUbLpPV80hYMFytzAAAABANqp8tqqyRaLMW3CPXdO2zPzuPRa1zqNl0nq+ZVNHc9gARQEoqdcblPO4XtLxRe5hPzIGCxKfLaqskWizFtF7/Mk7MjZeTdAIOulrXOo2XSer5kaICCuDCIEeVSkAYEeAk9uYNe4CXE/yryiU+W1VZItFmLaikXIQ2Z/n+s72tc6jZdJ6vmM35rshziC1BKGIyFby/uWKvKJT5bVVki0WYtge9AF/mJcxMCIwIN1RC2SgJNwZ76gwHLDS1rnUbLpPV8wnN6ujjxiGNj9BrSzV5RKfLaqskWizFtM4rqSWHmWQshMSyq9wBuFwZSWOqcyLHQnAk/IsGATNWyCt8p2MAFIETH9TwoUN44am3rnUbLpPV8v3qglh9IMDKGtR/maXgxEhJSXk2avKJT5bVVki0WYtpZBNmGMiMK4wglB3kLEhJAhmbasmN0S0oKvD3i8NcMiXBkOOK3PeLeudRGCFqEsoG9bb1tvW29bb1tvW2P4aO6d8uiiXjUuHU8omD82jDraq8olPltVWSLRZiAuAkgAzsFiGUBcRAAQri5hPISpngPKCqPY3t4GCGTgK3EccreudRGq8/ngkQ8PAAveI9ZQEtHa1V5RKfLaqskWizEFYMmeYqcGEygjwRjAURhQ6HewEiAQi8HYNc6iNV5/PUsxTtDLgW9vobVXlEp8tqqyRaLMQjitG7o5ZNd3DgBjHK58JZwokjj651Earz+e3L+Z/eHpmx07VXlEp8tqqyRaLMQ+IkbfhhIMR390BOcxcO3RYKg2JweWKxBCBCIuudRGq8/ngSndhl4LUNhtVeUSny2qrJFosxEKUKUAUIZK1yA6jBk54ndvlAL0Zc6HiwgqQ0DHgxBIghCMIeudRGq8/nq7LE38+p3tVeUSny2qrJFosxGDc1jjvGLFhN3jd4wYJEFBFBgA9y6/cxZ72Rx/iOULXOojVefzxKjWMQiK7niHeLVXlEp8tqqyRaLMbA/M+96fBlMiSfK8mDw62FbqBqCyR73e9wGAkQCEXgwNc6iNV5/PZa6ZTtERyqg8o9rVXlEp8tqqyRaLMbERNTt+8a7ry3CgX2JXPgLEFmgIQbeudRGq8/nlqL+GFDEA6posiw7kJLPOyCL0CJT5bVVki0WYggUAqQCozhEUWpTH8IAO8JgF4ATjcBkfLHWugPBta51EY1GR88Uk7jH+DpFItYUhjg4LABlGBMlhBbuWiJT5bVVki0WYgrqZAXHE9mJkEvJaEmJctjjuOMEEgqHFno783+YQAYNgwcd4ta51EbOg2r57BMjmuHRjlqBQYgQgSEriGJPNXP3Dln/SHQdBPDHCLT5bVVki0WYgvqEX412ifwwIeAXbpNP2VdBZ1SIjQiAb5ARzya4fo7iLZChDc11NTVrLXOo+m7J6zF3nG7RQlAkJBQWKlu8jsFgwWGMgnJgLtQNAItPltVWSLRZiBdHUd5YDiDiNwsJjFwJDm43hiGb8gbji3DqEtsQPqkAKkD4TzdZ1zqIxCvz6D8purEYMUYBiNsp8tqqyRaLMQHY3nqtlxhvVBl5cVQWVyefaBYrxYic2IIvYAkuCsakYIihy+TAAAQBwEEAGhcI93sa51EYPMRChghOlkQffufDGc50PBS/NhGoaLMfMgGjNJeZtlPltVWSLRZiAhRwTZl56awz3K0tmMY5DAGF0vAkWAjEE+ojBSmlyLBB5lg6Fl7uMlsIA5AIHuwMRDP6/13MirST5kOuZIyPd2U0Xa6fLaqskWizEBSAnBNw6bOYSxV1sJk3aEvbZX2Q+Cw4hfmiICRBFxDCQQN4xy82IAJAg3EbTT5bVVki0WYtgQBeXM55CR3ps6H/qH97BA/YQWEIikFB2V0UThH/V+bVDeOpgzlaAriPDaKfLaqskWizFtRgqO6edNnLgwL03gDh0sryoXFuaJsr6ZNv/AAU1+cM2BQRCGDhAz+1kcA2b8MQBSBGWy0+W1VZItFmLa5XJN5f5s6u058ceS2gINicA8+NlA+pYsiwXUJPh86mglfcjIwuuxKR2Wny2qrJFosxbWwdk552YkAKXAM8BuK4sbQu4kAYFhMIG7/gdluMrgbtOnzd1YNgELfwj3HOEjEZkuUy1/tJAlIlfltVWSLRZi2DVyCPPvIbmd6G8XjZVRoURud0AOeMFBYE4JQe2yGXK2k7cON3H5pZMvJczLOXrWHCCEsEpJwYoK7F+7l1/lXlEBbSxHQCJJwe3rreut663rreut663rreut663rreut66wwIK8I8QA8HXIixIALAfzDImQjWHhs4NqbASACSUAbDy5u7xzYhiEk8k4wcYe/N+YkWDxMXESI2ABiAGJZdUVA3MTM0HrYnmMt8yp3iZATOTDsBHpvhRjuDoLGMP6q8ohJtwwsNcRCyaHP2F+rBgX5ZyLJgKMH1ZY14IiEUgAvJKAMpIHNHYy7njv3sYmKBAY5EYtg7pNS7hrqgSoQ8+1BYqiRXHMsq0SWDbhncDhd82HlzCE7qr4XlCI7bsGsmxV5RER75e3wWcSjAsnJ0i72SONGOhYbUEdW0B3wZC4fwcKiRvLGB2DvezEgAZxXOrLTJ3HK7YM6epLvmwUTK6AwMLWYD2ZJU6XiNcHGUfyd/E3CegbVaO6Msb6D5MugTNRMpA9ooxuerySn54L1Ilnhd+EIliqbIMWzCpDAWKvKJP4B5A+fwUS0IHn3aJCAToQnuD+ws1eUTcUG0H4IQP5EsENAIBIQjZgXSzV5REgK8Q3nr+CKA3dKd4afi8PiP8ALNXlDO4glGQa8L54fwRQkutDDdfIG5ihCkIOB/phhSIA3pkRDVjh8W/RfwUkHOICrkXgP3O/9dhNhFFwiV9BuA6/gtGGF7RQ5e65FmGDXJAgWAM54pmZhluQks8mO2pPG/BV/KBYcnO+1YScjyd34MW/hAG764BtCMD0GCjzhGJP4OAuCgJld42cbgJSMrnfjUfwha4kTm4YbAdS2UHFFKcGU2R3ub8KfKF3jkYDBFuR2MxE4wyAa+iFD1Mz+GIx5vWokWSQISm/GwHIQHkkoAwwMXEx3bFAgcMgMPw67tQVGBYHIu4+DCJexWiGgukAw+YO47ljBBhg6Dj+JbhbBk2dx648MLG703MML4YVtWTSmA2BSiMliuATBXSy0MKH2NGUSnZ3MWzk2X8Ya/IGEINyXdia81M21wU16B3n/hu3/8QALRABAAECAwcEAgMBAQEAAAAAAREAITFBUTBAYXGBkaEgscHwYPFQcNEQ4dD/2gAIAQEAAT8Q/wDg7eFOcwwjzFr9tV+2q/bVftqv21X7ar9tV+2q/bVftqmG1TlJYuuezWEsEkIBZr9tV+2q/bVftqv21X7ar9tV+2q/bVL2ztJbJdcw7f0WS8x/UB9pJeY/qA+0kvMf1AfaSXmP6gPtJLzH9QH2kl5j+oD7SSSpxyCTLQN7+s6dOnTp17lAylJOEn8f9p8oo152R8V4ER8V4Q0fn5LR9pvMGEU8yWOtXPnOHOYUEFDBM9BJQaPobegfcYl70LL+Tx0VPFHwmsYr047q5eke1R8G5BLBdpAueWlrYnpWdElfKtA9VatMJHnA8UHHGl3dGgQJMLB2P+NyHCmQVy9zKN8UPPI0+SSiciEA4tFLibPBqwT1B+dEtH2nAEpKg1WAcW1YMflEaYvRHWjwtBxHI9ZWRgJE0SnooKhPqjB4UnTDoCyI4O2BIRQhyAutW4CSIHEmOuXhWWwgGdZewFFiDDZIIiCOI0qXMU8nSOpDzqTWe2z19wbn5uS0fWonaQGmSVGOHHCjTvEdzq112YXYMcIwGhjqcS+0GW3NR1D4i2qU/l3xmHAcCNvwuTjlJiDUrr6BHg8HEzD+gSWj5LqgJA4iU6OXXKRxaqToOezuWwvtCvuYuUY0PLBYLAA3FsQX5aI5I3HWpA8q2Repk8R/oIlo+KIEiLmyBI7SzRE9i93gXEIwBABgBucPhiFl7wTGo/oIlo+EkQhcBKXRh6UzhaDiJibADCAWOAdYdCeFGFiDAiADSN1GwWpgXIOB2H9BEtHwiIMNFidh6xjmJKiAozAYRCmJ7HANksA7DeegXXAGi5u0MeIZe6U8RLsmHVosV3VFqDI+KO5kQVmGQbJsIjwpDGLh6/kAk+JYBo6JNfafmvtPzX2n5r7T819p+afimEgYkczcPsTW5nILQiSMjswjiR4sPrDtoQFkPKQf42UUp09i4QZaYnleni6w2DoYDgeh4ommzzBzNgPAtDlL9j8gJPN4vzqXVqXVqXVqXVqXV3D4wKVaUzcvPs1pn4yJHVWnjxUpWJHMsJxEznZAMXmdB9SoFACVXKgUDqcQ+7HINi5R5LEuE8C68uNJso/dPuHpZ4IC4aPqpyjYPbCHKX7n5AS44rz3T5Wktc5TzkDilJRSrdXP/iEzMcQyJU7xLnMV99lFnuxL/fURV83S42RcxtZgiL7Oj6blJQKNNNbngagbBHQAQAaRsATIYcJEnb8gEpIzby3j7T93o2Ra5Pw9UScwmr6GuyXqXXmvz/3Kg3MGovsNQRdRDXCu+LbhnQAAAIAy2CpSPQAuq6Uysjzl7pHUvx8koTpTk6v5bx9p+70bL6DR6gtiSaiB79lNmsFELhKe1PIozDLoHvUVNIibqSo8tnP7Op301ycEaTqfkBJQuifFOV1953j7T93o2X0Gj1CQRu0hLgDigbcEaYvdGN0fujf9fkBJQ2nsUpfX3t6+07GQguqwFNqnCRNzQcpnhTgy4hewe9MnIoJ7vwopZzcQ9hUYfmg7I1Z7bGJ0wDnAoy8Q8GolmvoNHq4Xew3RYJbFX8nekcUwNFtXKrkfGk/zhgfkJLKfYazur33j7T93opmeaMn1fcecKsPMRg83z7HrAAWX8ZLt1xp1BKspIi4w6Nzjj6jGZsdQjuQIgAlXAKtdKBTaSdx6VaHMKB6TyWOH5GSUL9oacrx++8faUACKwAh0nAzjhV1jgSvg4YG3GSn6UcNs+FsUQK1MoV9x8UEmcCt1jHalxbg9HQHmhnqxzl2B6y/kpL7XVXmPfePtK39pzAAOAAbgzpWnQgedlfe8ILjqEhJx4TRV+PYTMi4cR0rnaIR7VMwziLO1JCFmy8/lJLiZdxTloVjkpvn2kK7YIboUGQSR8LM1ODhiSlEFyx54qZKBhEhNhiUjmykmzAi3uwHm66ZOWFqPiSf5xz/LCT0H1iyJtyex6AVAJXAKDlNkplRKXSUvhuv2ljl3YOVNjnBZuGdyO9AxzIB5xj19An2gFxQL95Kv/OCx1QwcTtWGPqloVPRdRJ1oQhJ4AEezszKxRD4CYucG1CZcoNrueRypqLYqR0fUAa80uxQ1+aQj1LF6DUzmFbI4R37KTWcLZi8eZgi4fioJIB3aSFZqNJxDM07UCDYSjstQeuYx4Wg1omS/CYBzvQsHLak1BOwFFjQ7MIet6OCFiIgNuRIeu5/aUOClzeOhxqDvchLOeh7s9gQMqWBiJeRnzx9SjWUld0kOZ2G1GZ5x7oJNXRvWo5JQ7U2S3JEeFEpLmcNcBbNNPYoUBZ+HSUII0gkPB/0AQCNkc6WT4wYI+VblH4pdVB8wfijpBBmJI7i2M+AsHc8/c3P7SMI20X4XHFyjZAkegW9tcTqZeqNCBTbCXgijzq/65WB7obbthOVhKQtcwtxD8VR5Kuymb4oLruJDKSnie65yWiZUQjiO4/aSeYojIXXY0KFh0ACANkJ5hTcv25gnX1x1oFfKC1M9TkUVkcsLBHdUkhwqdXXEWTh8pW0T1OpErCBMoyXahgwYMGDBgwYMGDHyhsYM4xi/AYnaBjaSwOMS6O5aOFSwJ7A6I3H7Sc4DBwWE9h2aCQkjQloDuBB4j163SkDcGvM6nEVz5IVxHdRCAFQuo/8AM1CkRRITcpX0Wn4DaSBAywk4KTrQNXDNyS64jI8TcSci+hdUH3dNx+0mT/4J2gA8Mu8E+dhf7EzjYq4eDwb1iW3bF6hcHdca/wAJZnwKTgNylfRafgVQ4Aqs9paPPTHWiSgJEZE3ASC55BE7NNqS0EJutqQ7h9pVgEOM7SCnFlOJHiNiJlWK56qw50TjlLe4Jnls40GNpRImo7ksDRQShoxXAmgiOAUkkJuEdDLcpX0Wn4HwuOZ0WY+RywCLQsFzEx2ro3wBOAYl4BT57sTc0xDnS3q9kU0UZdWKVWW7uH2mcMC+wWGelCAUIkiZ7IyQOu/QWelKqri7MUKbzdAmehKSB4EVnTyDzo1QSBPjaswWQBcsT0KECNi99aGWNSaHW8BWLP1R1WdzlfRafgmei8ma62bjBpr1s3M8CSdQoQ7f6QPr4Wpp3Upi0srO4jzUsfcA868p1KJa4aI5Yl3rES0bc1vun2mb+AFfB6GLka7Ie7yy2BHEFua6bYeF507jRGuZ71jypwm5FLkBFJa7oDrIqGlHL3OkgQ4+6aCl+pxotThontTqPTT7VIIGwGT1QKEDWCs7S8UencAR1VGpok+FKu5eWTzXdpX0Wn4NMBuAh1RRbWA7ihLvXiO+eoCFao6TJzgo480ChjgzJ3NJEbIvYpdBssb1dj1EccpiJVOvOvOvOvOvOvOvOvOv1a7kCIh+npvZWU2zFwShcCBnKPDRz2E8kjSJm+wyxpERUyriv8jK+i0/JtrNDGDoYJwrBkVbxqZOT3aIrErETgnoZHJMGXKcelRqKwYh4ObtnSrTU5U4q5/yUr6LT8omx2LPfNWe1HYNilO4PFNgLUj+aYNGMA95J0q+QZY3q/ykr6LT8/mlJgBLUHfNf8VD3nT/ADr7j8UVIPH/ADqetWj+Kahnim9yvotPw2AecHvsVEyJwfhFIdzRDpea/wBqxjmPgoBI7pH/ACsO5b5690rpNQJn7JSSix98NSVtxsvc/hGprAJV0CmWL66Br/5VBm0zp0uE6FBwzPV43pRIqwIzsUAEBBw9L8t8FpQ+4nw1LZFmE8ypplgMujPmjigytnUfapXmECeRGnM2ER7h5pEYbO6SvotPwmFzNFJzSwc6LbV2J0BShCkm8gmOtSoRqPPHQU1wMTobIRAR1KOkbFPwTQMJWPh8p4otWcobyK4gMh1+BQuoFzko8KXm2XvB6g6UfGGCPhoj+X/lfvf+V+9/5X73/lfvf+V+9/5X73/lfvf+V+9/5X73/lfvf+V+9/5UkUHZICNMXZZQDRerYHF0Gg40gB1XDkQbg3xoAxk7ZjDvSe4F2WK+aPltEATAXF6m5SjNCeTScMcFfSfmvpPzX0n5r6T819J+a+k/NfSfmn1TKmimXgH8+ViWxo19gI40HHd2MLwGPU1gxUMXQ3TyfXRhgbptUIwBKrkFQyOLB5JweHA54BBBhujQ1As7vt4/i8qDL85gB7nAlaAbgFx8aSeLLyoAAAAsBu3k+ujDA3TaRoZ8piuTbu03aBqNOFfi/FsqCKMiGIfNh+jUFYMHgOLq8W+8eT66MMDc9soAkEwr9ILRrTTyEB43aXSHhLA7/wAVyoMIs2aF5H4HsxNsKAEAabz5ProwwNz2hTVZkt8Hc3bxg6ovtShlY5qPz+KSoL5Ya2P2c9cNYJkCACAN68n10YYG57TVA7zIMfduwCQBG3lHsV/FJUEvZUMsDdzyDVrJAPYCO/HahAVI7aXdCkQJkWebPhTFECkYmBz2nk+ujDA3PaI5Er7TXdsFdw5o4K/xRKguNggvBPCgZeK6bRnMiQTNWj7mrncVLDii8CkIBLXWP/Pt9O08n10YYG57blypfSy3Zjgko1Sfnx/E5UGYhgddGNzhbQdo2PeDh8vCrR1pC1tqLsZav/ft9O08n10YYG57WCC4NID5ezaKBVAM2rYPkNOk0KpBil7X1k4gJWnc4oaceA/E5UEITmiXDYdp2jwaG4y/SSc5dPT9vp2nk+ujDA3PbAuCRteY5q7NmpgIFkOT/wAJxuDmb5BekeAKUSquq0SHMFxO1ZYNI8qeKKUIF0fK4vanGYmAjoYnVHhRd7uJI9f+3aBmg+2ficqCQSnY4BNGnOTIEGzI2BCc7I9CaFCKUYq5+n7fTtPJ9dGGBue1h5D5JJVtxpEwl/k+I2JJSNOILTCQKlUlfPrK5hLJ3g6RTjaxCeO/0DlQl2kJupUkwCBmUju7qlAnkyBIJc/XFFFFFES/jCYK4HFf5fH1JS0XzG0I2TCdCeQ8vV9vp2nk+ujDA3Ta5xCByAnDPU5FA5tMlEiOZsCdk1Go0skM4s1y4KHYhH1tMDRbNS0IanCYPAWl/E5XECwm6/KbSl5NwAEe69X2+naeT66MMDddrwTC8kcHiX3YTQrTE5A4I7AEbYLJSx1DKaymlKUUgIR0fxyVxrEj12ZcrQmmXZU3WV+fV9vp2nk+ujDA3baSlkFmRu69XZGZXYl09ExE0b7AdVEuF6vu4OetJOayE/04ln8blcWaj5TZnnPaihYhT39X2+naeT66MMDd9rHAxPB7miXKPADNNSsvkzM9hCbEfNKcsOFNBkLGThl0w8GnDwXoMkbn4zK4IIQbMDC1Ip18UujPj1fb6dp5ProwwN42hwwqQYImDUJwi4jwZPPPChHAWKrQYrg7Br9gY08G/Rk4USJStp8Tg49hTllQohHT8jlcCLPQQ+XqX2+naeT66MMDetocbi2HRLDglLJcXK+uJ5nKgSwHg1Es7BwFiw7+xzWeNTeRwHgZ8i/PH8WlcE1CbQCdieFsec4F19X2+naeT66MMDfNoNG5c5bsHiQ0YwYE83Gw5QedIBQjcTP1xYEBByaNJmKR5qx4WJxyUopAQjo/ikrgSm4rgttJ2MCIvY8k+Q+r7fTtPJ9dGGBv20SBYbd7pybcsaZTxwfM6OJJsAwcTdx7uDnrS+xrgsRHdZX1mr+eugcsAHu7QsLGZhDXIAMg2HBIevpYYhk7naeT66MMDdds0r+xJEwwOOytThCT/Tg2als2bOMvZwctNhkPggWD66dDbBXy4IJhE3SVCmXbI+P563uUVzrhxUdqdiADfNOazwTT0LLODMQHdrBJT0D42nk+ujDA3XaYMmIkAI+aSwQtC+69uBjQ9bcLDqFhxHYklQZEYRpIOaVY4z0uZfJ2GOhh8B4h1ORukr9+9/PSoIEDMs9UlERMNgiSO0fZ42UEImYlXukAkl/83Q3x/wCE1iNY7hqYnoZ7XyfXRhgbrtknUMnd2/8AN5Yd9LVYriQ0OiBIIO2PJjm03w5Wzk7DhuXAG64JI8GvCaqE8PrBAFEI50auUMwxOVmcHhucpKriy938+BrAYrr2Lrka7VKGBQHERxKd5mSFvAmOkFLNmeqSE+aEWIwEyA2vk+ujDA3TaWkivEA96CQH2QAe3oYw/Y/JfA0QW8wOAweqObTaWYBxyOD09c4cAZ2AYhZIvGoHJPVSIokJiO5ShdiAcSSPZP5+NPq9xRzLJxKU558jEib55ProwwN02q1JE5JA+QesRgwMxyaYZdofkrdEOFNG3ANupHmnwWZeuUIejSEBHiVEmWgTTmEnmGYm8OeDSaFAIAQAYBsbG2WIgCJwFHTcpSXwBrDIdJAmqPpYc2FF1Y9zR9KAVYEpljfIthT2WcyRH2/mSSXwQhunITbR5755ProwwN024gpwzbHEDsiSQ4U0WXF96KAHeBh1DZxclj1fZI9CFxU6f77aEDIZD4eNKlyQXBDPcWk9TNeRSw8cSPd5rDnrIXeh0KAAAgMv+HgAQWACevgf5lKFIlxMqL6EfgCwn1zY715ProwwN02rP7M52eIPXd1ZG7yf/L6ATQlebHkbrlUY4ozDoOafzShGFEImY0IMwVtoTJ/fWhCNKJE1HefJ9dGGBue01ZQBxawTBOAD5nd4URLfrJ+hOvezUCnUkoLxQMEcHdEkhwo2zDe2OhwIOn82uuFuiRr7C5wzqRKgFxvEcSTePJ9dGGBue29Dk5PxCOu7oRWAutJwMxMG8dQPX0kdM65Yl3Ou64wgAXbb5HJ/nEnjz3aiXKs8YsGcwjqJ41gsZHc0Fu6M0JYMFSO6+T66MMDc9piZFIc4dH33e062FuCz0Sc49UDVFy2A7JOZuoor2EyENcyA/lE8nHr/ADrMY0lzTE82DnhWA1JhJnexyAN18n10YYG57ZrhESYlB7u7GSgJVYAqbOZO/wDXtjgGvqae8EIMidaLZAFuZjHUO2TutqSehYG54tv83exMG8rgBmtqIBYVJ+A4WroZ0AABAYBsFAVYDOkWnl6MhwLXA40ikjpUFV2nm+ujDA3PbbPhUklsUurZat+aUB5p5A3U1GHuUuOIb6Drh61Slwomy0GI/wC1AdU8TVGSNk3RkmAkhUJbtwP5o0jIFmXyPLlULhgC7oewdZdilLC8AMVdKBtpsOuLE8+T/n2+naR3RO3qlWsNAAqtEX1+9fZ/mvs/zX2f5r7P819n+a+z/NfZ/mvs/wA19n+a+z/NfZ/mk9kBlsExhg7DEmWxckvViVlgThE95o522W48CnuKErV4Pt3AmwJVYAot6TctY/8AIMpcGvqpSpxVzdjM2ksAcT5MHOn3CzW6pD9NwKGEqQHNp9OcQDHRkDvSrdYAY5pDodabG89DgGAcD+ZcDBu6bIF1qEIFszS8DAMjYqAqwGK02BeOOwOhOrwx/wCfb6dpLNQ779KlCRZdSgo2SE/GqwL4gTjYTu1r9UEdX5UTwpKXUY2QTfkYGqtX60COfj8E1Cy7ZADLM8ThtM9RDIdRYcGmi453GJfy86CEEjN1NnYr03ZylvUI4wxLoHaaaa1g+veB2aWSBYbe0NhyP5sIAVbAZ1FaLEu1x44PFbLZFlTsMvJbSBOBOp6Pt9O0kVjr9v8ABBYpw79DUMG5IvUr5o0FGbr2KMPqDgajuOfNUTcmgv8AxfnOA/5aEJl5UdgVmDoYclvtWLYyPi8DZ0NwJnqKocjAcEaA3AJSdUHihbAq8zXVRMpZLHUR5okQTq9wq1NQFYz6aUez5kGalgFl4OHurRSwG8h4rhkJk6wfNXcHKpzX+eFsuGWm90V/rZcsCjEscamkOuWwg4BB09H2+naBPwINT/M/oUnvhxDJIdINkrGF2ZLO/pPt9O0FEjDNJQ9n+hCLZbjIAXoS0S842AEBshlWTDiBPd9P2+naHg0U2s96PT+hBHSpHgh5Ds0WGUaDvv6YSUj/AD7MYLasAJXtWUVacBEOhb+hCVLx+uzgYXRcrnc260mwR0IMIms/9XMADFWwUYeHY0+Nnb3EJurwdP8AQrTPwdoMcLdSdMx4OE602Ycf+OFUMXJPPU7DtCniEjZAY7Hd/Qt5I69te05LCahSJ4kVF33GI0lU8VfQUxfMLimuz4vRkshxWA511YD5TBwMP6FGJfQlz4W9XKLhY5rkdyaf0MtiPBkjNRhQSGxAx53hRL1mPh0MXgcaWs5l0Sv9Di5XlN0Sjkz2a7uoXbMcg1XAM2j0kboSe7FfgP6IsdAzifBc4hRIklxNRMkbJqbqhbsaD7lnVyob2cCHXGDI4r/RSh85RskeupmcQor9XJDczVKQb9wnwZ0wRkzkNF/8DL+jJ0MhZOb/AODnwIALBI+lyTjuBDvQwDNXCiCCR3ScY6FuNcFRCDQWHA/o5CvzODg6nBs094LHq44xzlyrJKNocExHg7Qb5yhLvRAzYNZ18AHGpSZmyOY9y/0kDM8y3nGNAEaDKORD16qFkyyryNucUWZGwFOkGgSpgJHqejiBgTylM43BJ4JQJ8xQnVmgi3xFg61+IFceh4OUtv6YRlf6kNcMNezUNgji1D4H098ablvVH/4bt//+AAMA/9k="
+                        alt="The Gist"
+                        style="height: 52px; width: auto; display: block"
+                    />
+                    <div class="logo-meta">
+                        <span class="logo-descriptor"
+                            >Non-profit &nbsp;|&nbsp; Pro-people &nbsp;|&nbsp;
+                            Independent</span
+                        >
+                        <span class="logo-sub"
+                            ><s style="color: #fff">Breaking</s>&nbsp; News that
+                            builds.</span
+                        >
+                    </div>
+                </div>
+                <div class="header-right">
+                    <a
+                        href="https://youtube.com/@bdthegist"
+                        target="_blank"
+                        class="header-link"
+                    >
+                        <svg
+                            width="13"
+                            height="13"
+                            viewBox="0 0 24 24"
+                            fill="#FFC512"
+                        >
+                            <path
+                                d="M22.54 6.42a2.78 2.78 0 0 0-1.95-1.96C18.88 4 12 4 12 4s-6.88 0-8.59.46A2.78 2.78 0 0 0 1.46 6.42 29 29 0 0 0 1 12a29 29 0 0 0 .46 5.58 2.78 2.78 0 0 0 1.95 1.96C5.12 20 12 20 12 20s6.88 0 8.59-.46a2.78 2.78 0 0 0 1.95-1.96A29 29 0 0 0 23 12a29 29 0 0 0-.46-5.58z"
+                            />
+                            <polygon
+                                points="9.75 15.02 15.5 12 9.75 8.98 9.75 15.02"
+                                fill="#000"
+                            />
+                        </svg>
+                        <span>bdthegist</span>
+                    </a>
+                    <a
+                        href="https://fb.com/thegistbd"
+                        target="_blank"
+                        class="header-link"
+                    >
+                        <svg
+                            width="13"
+                            height="13"
+                            viewBox="0 0 24 24"
+                            fill="#FFC512"
+                        >
+                            <path
+                                d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"
+                            />
+                        </svg>
+                        <span>thegistbd</span>
+                    </a>
+                </div>
+            </div>
+
+            <!-- HERO -->
+            <div class="hero">
+                <div class="hero-statement">
+                    Far enough to be anxious about
+                    <em>the people you left behind.</em> Close enough to build
+                    the media that finally speaks for them.
+                </div>
+                <div class="ask-qr" style="align-items: center">
+                    <div
+                        class="qr-box"
+                        style="width: 65px; height: 65px; padding: 3px"
+                    >
+                        <img
+                            src="/images/qr-stripe-brand.png"
+                            alt="Stripe QR"
+                            style="width: 100%; height: 100%; display: block"
+                        />
+                    </div>
+                    <a
+                        href="https://donate.stripe.com/5kQeVdesy3R5gyHaR33AY01"
+                        target="_blank"
+                        style="
+                            display: inline-block;
+                            background: var(--yellow);
+                            color: var(--black);
+                            font-family: var(--condensed);
+                            font-size: 7px;
+                            font-weight: 700;
+                            letter-spacing: 1.5px;
+                            text-transform: uppercase;
+                            text-decoration: none;
+                            padding: 4px 10px;
+                            margin-top: 4px;
+                            border: 1px solid var(--black);
+                        "
+                        >Support Us</a
+                    >
+                </div>
+            </div>
+
+            <!-- ORIGIN + LANDSCAPE ROW -->
+            <div class="context-row">
+                <div class="origin-row">
+                    <div class="cell-label">
+                        <span class="cell-label-dot"></span>Origin
+                    </div>
+                    <div class="origin-body">
+                        Politics does not operate only through laws, police, or
+                        elections. It operates through language, framing,
+                        emphasis, and omission. What is repeated becomes common
+                        sense. What is softened becomes acceptable. What is
+                        excluded becomes invisible.<br /><br />
+                        July '24 proved that ordinary Bangladeshis can take
+                        control of the language, framing, emphasis and omission.
+                        The Gist was born to hold that space open. Not for
+                        politicians. Not for domesticated journalists. For you,
+                        me, and the regular Bangladeshis, like us and around us
+                        — home and abroad. Registered in the UK and run with
+                        Bangladeshis on the ground, the Gist operates at the
+                        sweet spot of collaboration between the diaspora and the
+                        mainland.
+                    </div>
+                </div>
+
+                <div class="landscape-row">
+                    <div class="cell-label">
+                        <span class="cell-label-dot"></span>Media Landscape
+                    </div>
+                    <div class="spectrum-wrap">
+                        <svg
+                            viewBox="0 0 340 210"
+                            xmlns="http://www.w3.org/2000/svg"
+                        >
+                            <!-- Quadrant fills -->
+                            <rect
+                                x="1"
+                                y="1"
+                                width="168"
+                                height="103"
+                                fill="#F0F0F4"
+                                rx="2"
+                            />
+                            <rect
+                                x="171"
+                                y="1"
+                                width="168"
+                                height="103"
+                                fill="#F7F5F0"
+                                rx="2"
+                            />
+                            <rect
+                                x="1"
+                                y="106"
+                                width="168"
+                                height="103"
+                                fill="#F7F5F0"
+                                rx="2"
+                            />
+                            <rect
+                                x="171"
+                                y="106"
+                                width="168"
+                                height="103"
+                                fill="rgba(255,197,18,0.10)"
+                                rx="2"
+                            />
+
+                            <!-- Axes -->
+                            <line
+                                x1="170"
+                                y1="4"
+                                x2="170"
+                                y2="206"
+                                stroke="#D0D0D0"
+                                stroke-width="1"
+                                stroke-dasharray="3,3"
+                            />
+                            <line
+                                x1="4"
+                                y1="105"
+                                x2="336"
+                                y2="105"
+                                stroke="#D0D0D0"
+                                stroke-width="1"
+                                stroke-dasharray="3,3"
+                            />
+
+                            <!-- Arrow heads -->
+                            <polygon
+                                points="170,3 167,9 173,9"
+                                fill="#C0C0C0"
+                            />
+                            <polygon
+                                points="170,207 167,201 173,201"
+                                fill="#C0C0C0"
+                            />
+                            <polygon
+                                points="3,105 9,102 9,108"
+                                fill="#C0C0C0"
+                            />
+                            <polygon
+                                points="337,105 331,102 331,108"
+                                fill="#C0C0C0"
+                            />
+
+                            <!-- X axis labels -->
+                            <text
+                                x="8"
+                                y="102"
+                                text-anchor="start"
+                                font-family="Barlow Condensed,sans-serif"
+                                font-size="6"
+                                fill="#777"
+                                letter-spacing="1"
+                                font-weight="700"
+                            >
+                                ◀ SERVES AGENDA
+                            </text>
+                            <text
+                                x="332"
+                                y="102"
+                                text-anchor="end"
+                                font-family="Barlow Condensed,sans-serif"
+                                font-size="6"
+                                fill="#b8920a"
+                                letter-spacing="1"
+                                font-weight="700"
+                            >
+                                SERVES PEOPLE ▶
+                            </text>
+
+                            <!-- Y axis labels -->
+                            <text
+                                x="173"
+                                y="12"
+                                text-anchor="start"
+                                font-family="Barlow Condensed,sans-serif"
+                                font-size="6"
+                                fill="#777"
+                                letter-spacing="1"
+                                font-weight="700"
+                            >
+                                ▲ FUNDED BY CORPORATIONS
+                            </text>
+                            <text
+                                x="173"
+                                y="204"
+                                text-anchor="start"
+                                font-family="Barlow Condensed,sans-serif"
+                                font-size="6"
+                                fill="#777"
+                                letter-spacing="1"
+                                font-weight="700"
+                            >
+                                ▼ FUNDED BY THE AUDIENCE
+                            </text>
+
+                            <!-- TOP LEFT: circular avatar frames, clustered with overlap -->
+                            <defs>
+                                <clipPath id="cp1">
+                                    <circle cx="22" cy="22" r="22" />
+                                </clipPath>
+                                <clipPath id="cp2">
+                                    <circle cx="22" cy="22" r="22" />
+                                </clipPath>
+                                <clipPath id="cp3">
+                                    <circle cx="22" cy="22" r="22" />
+                                </clipPath>
+                                <clipPath id="cp69">
+                                    <circle cx="22" cy="22" r="22" />
+                                </clipPath>
+                            </defs>
+
+                            <!-- Palo -->
+                            <g transform="translate(10, 30)">
+                                <circle
+                                    cx="22"
+                                    cy="22"
+                                    r="23"
+                                    fill="#fff"
+                                    stroke="#ddd"
+                                    stroke-width="1.5"
+                                />
+                                <image
+                                    href="/images/palo.png"
+                                    x="0"
+                                    y="0"
+                                    width="44"
+                                    height="44"
+                                    clip-path="url(#cp1)"
+                                    preserveAspectRatio="xMidYMid slice"
+                                />
+                            </g>
+
+                            <!-- Daily Star -->
+                            <g transform="translate(44, 30)">
+                                <circle
+                                    cx="22"
+                                    cy="22"
+                                    r="23"
+                                    fill="#fff"
+                                    stroke="#ddd"
+                                    stroke-width="1.5"
+                                />
+                                <image
+                                    href="/images/ds.png"
+                                    x="0"
+                                    y="0"
+                                    width="44"
+                                    height="44"
+                                    clip-path="url(#cp2)"
+                                    preserveAspectRatio="xMidYMid slice"
+                                />
+                            </g>
+
+                            <!-- 71tv -->
+                            <g transform="translate(78, 30)">
+                                <circle
+                                    cx="22"
+                                    cy="22"
+                                    r="23"
+                                    fill="#fff"
+                                    stroke="#ddd"
+                                    stroke-width="1.5"
+                                />
+                                <image
+                                    href="/images/71tv.png"
+                                    x="0"
+                                    y="0"
+                                    width="44"
+                                    height="44"
+                                    clip-path="url(#cp3)"
+                                    preserveAspectRatio="xMidYMid slice"
+                                />
+                            </g>
+
+                            <!-- +69 others -->
+                            <g transform="translate(118, 30)">
+                                <circle
+                                    cx="22"
+                                    cy="22"
+                                    r="23"
+                                    fill="#fff"
+                                    stroke="#ddd"
+                                    stroke-width="1.5"
+                                />
+                                <image
+                                    href="/images/others-69.svg"
+                                    x="0"
+                                    y="0"
+                                    width="44"
+                                    height="44"
+                                    clip-path="url(#cp69)"
+                                    preserveAspectRatio="xMidYMid slice"
+                                />
+                            </g>
+
+                            <!-- TOP RIGHT: emerging independents, near axes -->
+                            <defs>
+                                <clipPath id="cp6">
+                                    <circle cx="22" cy="22" r="22" />
+                                </clipPath>
+                                <clipPath id="cp7">
+                                    <circle cx="22" cy="22" r="22" />
+                                </clipPath>
+                            </defs>
+                            <!-- Nutshell -->
+                            <g transform="translate(178, 14)">
+                                <circle
+                                    cx="22"
+                                    cy="22"
+                                    r="23"
+                                    fill="#fff"
+                                    stroke="#ddd"
+                                    stroke-width="1.5"
+                                />
+                                <image
+                                    href="/images/nutshell.png"
+                                    x="0"
+                                    y="0"
+                                    width="44"
+                                    height="44"
+                                    clip-path="url(#cp6)"
+                                    preserveAspectRatio="xMidYMid slice"
+                                />
+                            </g>
+                            <!-- Cablgram -->
+                            <g transform="translate(212, 14)">
+                                <circle
+                                    cx="22"
+                                    cy="22"
+                                    r="23"
+                                    fill="#fff"
+                                    stroke="#ddd"
+                                    stroke-width="1.5"
+                                />
+                                <image
+                                    href="/images/cablgram.jpg"
+                                    x="0"
+                                    y="0"
+                                    width="44"
+                                    height="44"
+                                    clip-path="url(#cp7)"
+                                    preserveAspectRatio="xMidYMid slice"
+                                />
+                            </g>
+
+                            <!-- BOTTOM LEFT: YouTube pundit avatars -->
+                            <defs>
+                                <clipPath id="cp4">
+                                    <circle cx="18" cy="18" r="18" />
+                                </clipPath>
+                                <clipPath id="cp5">
+                                    <circle cx="18" cy="18" r="18" />
+                                </clipPath>
+                                <clipPath id="cp6">
+                                    <circle cx="18" cy="18" r="18" />
+                                </clipPath>
+                                <clipPath id="cp7a">
+                                    <circle cx="18" cy="18" r="18" />
+                                </clipPath>
+                            </defs>
+
+                            <!-- Pinaki -->
+                            <g transform="translate(8, 116)">
+                                <circle
+                                    cx="18"
+                                    cy="18"
+                                    r="19"
+                                    fill="#fff"
+                                    stroke="#ddd"
+                                    stroke-width="1.5"
+                                />
+                                <image
+                                    href="/images/pinaki.png"
+                                    x="0"
+                                    y="0"
+                                    width="36"
+                                    height="36"
+                                    clip-path="url(#cp4)"
+                                    preserveAspectRatio="xMidYMid slice"
+                                />
+                            </g>
+
+                            <!-- Elias -->
+                            <g transform="translate(34, 116)">
+                                <circle
+                                    cx="18"
+                                    cy="18"
+                                    r="19"
+                                    fill="#fff"
+                                    stroke="#ddd"
+                                    stroke-width="1.5"
+                                />
+                                <image
+                                    href="/images/elias.jpg"
+                                    x="0"
+                                    y="0"
+                                    width="36"
+                                    height="36"
+                                    clip-path="url(#cp5)"
+                                    preserveAspectRatio="xMidYMid slice"
+                                />
+                            </g>
+
+                            <!-- Nabanita -->
+                            <g transform="translate(8, 148)">
+                                <circle
+                                    cx="18"
+                                    cy="18"
+                                    r="19"
+                                    fill="#fff"
+                                    stroke="#ddd"
+                                    stroke-width="1.5"
+                                />
+                                <image
+                                    href="/images/nabanita.png"
+                                    x="0"
+                                    y="0"
+                                    width="36"
+                                    height="36"
+                                    clip-path="url(#cp6)"
+                                    preserveAspectRatio="xMidYMid slice"
+                                />
+                            </g>
+
+                            <!-- Zahed -->
+                            <g transform="translate(34, 148)">
+                                <circle
+                                    cx="18"
+                                    cy="18"
+                                    r="19"
+                                    fill="#fff"
+                                    stroke="#ddd"
+                                    stroke-width="1.5"
+                                />
+                                <image
+                                    href="/images/zahedtake.jpg"
+                                    x="0"
+                                    y="0"
+                                    width="36"
+                                    height="36"
+                                    clip-path="url(#cp7a)"
+                                    preserveAspectRatio="xMidYMid slice"
+                                />
+                            </g>
+
+                            <!-- label -->
+                            <text
+                                x="80"
+                                y="155"
+                                font-family="Barlow Condensed,sans-serif"
+                                font-size="8"
+                                fill="#999"
+                                font-weight="700"
+                                letter-spacing="0.5"
+                            >
+                                YOUTUBERS
+                            </text>
+
+                            <!-- BOTTOM RIGHT: The Gist — reader-funded, serves people -->
+                            <rect
+                                x="174"
+                                y="108"
+                                width="162"
+                                height="97"
+                                fill="none"
+                                stroke="#FFC512"
+                                stroke-width="1"
+                                stroke-dasharray="4,3"
+                                rx="2"
+                                opacity="0.5"
+                            />
+                            <defs>
+                                <clipPath id="cp8">
+                                    <circle cx="28" cy="28" r="28" />
+                                </clipPath>
+                            </defs>
+                            <!-- Gist logo as large avatar, pushed far right near "serves people" -->
+                            <g transform="translate(276, 122)">
+                                <circle
+                                    cx="28"
+                                    cy="28"
+                                    r="30"
+                                    fill="#000000"
+                                    stroke="#FFC512"
+                                    stroke-width="2"
+                                />
+                                <circle
+                                    cx="28"
+                                    cy="28"
+                                    r="38"
+                                    fill="none"
+                                    stroke="#FFC512"
+                                    stroke-width="1"
+                                    opacity="0.25"
+                                />
+                                <circle
+                                    cx="28"
+                                    cy="28"
+                                    r="46"
+                                    fill="none"
+                                    stroke="#FFC512"
+                                    stroke-width="1"
+                                    opacity="0.1"
+                                />
+                                <image
+                                    href="/images/gist-logo-black.jpeg"
+                                    x="0"
+                                    y="0"
+                                    width="56"
+                                    height="56"
+                                    clip-path="url(#cp8)"
+                                    preserveAspectRatio="xMidYMid slice"
+                                />
+                            </g>
+                        </svg>
+                    </div>
+                </div>
+            </div>
+
+            <!-- CONTENT SHOWCASE -->
+            <div class="content-showcase">
+                <div class="cell-label">
+                    <span class="cell-label-dot"></span>Featured Content
+                </div>
+                <div class="showcase-grid">
+                    <div class="showcase-card">
+                        <div class="showcase-thumb th-2">
+                            <div class="showcase-type">Podcast</div>
+                            <img
+                                src="/images/technologist-ep-1-cover.png"
+                                alt="The Technologist Ep 1"
+                            />
+                        </div>
+                        <div class="showcase-body">
+                            <div class="showcase-title">
+                                <a
+                                    href="https://youtu.be/ZuoSO6c53es?si=u7veRCEDA6QElDoM"
+                                    target="_blank"
+                                    style="
+                                        color: inherit;
+                                        text-decoration: none;
+                                    "
+                                    >The TechnoloGist — Ep. 1: Debugging
+                                    Manifestos</a
+                                >
+                            </div>
+                            <div class="showcase-desc">
+                                Unpacking what political manifestos promise on
+                                technology and how those promises stack up
+                                against the reality of the national
+                                infrastructure.
+                            </div>
+                            <div class="showcase-meta">90 min watch</div>
+                        </div>
+                    </div>
+                    <div class="showcase-card">
+                        <div class="showcase-thumb th-1">
+                            <div class="showcase-type">Explainer</div>
+                            <img
+                                src="/images/explainer.png"
+                                alt="What's the Gist: Gonovoter"
+                            />
+                        </div>
+                        <div class="showcase-body">
+                            <div class="showcase-title">
+                                <a
+                                    href="https://youtu.be/359KKVA3hFU?si=jHmf31KcN-vE20d2"
+                                    target="_blank"
+                                    style="
+                                        color: inherit;
+                                        text-decoration: none;
+                                    "
+                                    >What's the Gist: গণভোট</a
+                                >
+                            </div>
+                            <div class="showcase-desc">
+                                A visual explainer breaking down Bangladesh's
+                                electoral system and what referendum means for
+                                democratic participation.
+                            </div>
+                            <div class="showcase-meta">5 min watch</div>
+                        </div>
+                    </div>
+                    <div class="showcase-card">
+                        <div class="showcase-thumb th-3">
+                            <div class="showcase-type">Podcast</div>
+                            <img
+                                src="/images/ihp-cover-edited.png"
+                                alt="iHate Politics"
+                            />
+                        </div>
+                        <div class="showcase-body">
+                            <div
+                                class="showcase-title"
+                                style="text-transform: none"
+                            >
+                                <a
+                                    href="https://youtu.be/gbT8N9RjNYc?si=9gI31sC7ZFw9YNSw"
+                                    target="_blank"
+                                    style="
+                                        color: inherit;
+                                        text-decoration: none;
+                                    "
+                                    >iHate Politics</a
+                                >
+                            </div>
+                            <div class="showcase-desc">
+                                A politics podcast for people who hate politics.
+                                Unfiltered takes on power, policy, and why it
+                                all matters.
+                            </div>
+                            <div class="showcase-meta">60 min watch</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- CONTENT TICKER -->
+            <div class="content-ticker">
+                <div class="ticker-label">Reels &amp; Photocards</div>
+                <div class="ticker-track">
+                    <!-- Set 1 -->
+                    <div class="ticker-item">
+                        <img src="/images/reel-1.png" alt="Reel" />
+                    </div>
+                    <div class="ticker-item">
+                        <img src="/images/card-01.jpeg" alt="Card" />
+                    </div>
+                    <div class="ticker-item">
+                        <img src="/images/card-02.jpg" alt="Card" />
+                    </div>
+                    <div class="ticker-item">
+                        <img src="/images/card-03.jpg" alt="Card" />
+                    </div>
+                    <div class="ticker-item">
+                        <img src="/images/reel-2.png" alt="Reel" />
+                    </div>
+                    <div class="ticker-item">
+                        <img src="/images/card-04.jpg" alt="Card" />
+                    </div>
+                    <div class="ticker-item">
+                        <img src="/images/card-05.jpg" alt="Card" />
+                    </div>
+                    <div class="ticker-item">
+                        <img src="/images/card-06.jpg" alt="Card" />
+                    </div>
+                    <div class="ticker-item">
+                        <img src="/images/card-07.jpg" alt="Card" />
+                    </div>
+                    <div class="ticker-item">
+                        <img src="/images/reel-3.png" alt="Reel" />
+                    </div>
+                    <div class="ticker-item">
+                        <img src="/images/card-08.jpg" alt="Card" />
+                    </div>
+                    <div class="ticker-item">
+                        <img src="/images/card-09.jpeg" alt="Card" />
+                    </div>
+                    <div class="ticker-item">
+                        <img src="/images/card-10.jpeg" alt="Card" />
+                    </div>
+                    <div class="ticker-item">
+                        <img src="/images/card-11.jpeg" alt="Card" />
+                    </div>
+                    <div class="ticker-item">
+                        <img src="/images/card-12.jpg" alt="Card" />
+                    </div>
+                    <div class="ticker-item">
+                        <img src="/images/card-13.jpg" alt="Card" />
+                    </div>
+                    <div class="ticker-item">
+                        <img src="/images/card-14.jpg" alt="Card" />
+                    </div>
+                    <div class="ticker-item">
+                        <img src="/images/card-15.jpeg" alt="Card" />
+                    </div>
+                    <div class="ticker-item">
+                        <img src="/images/card-16.jpeg" alt="Card" />
+                    </div>
+                    <div class="ticker-item">
+                        <img src="/images/card-17.jpg" alt="Card" />
+                    </div>
+                    <div class="ticker-item">
+                        <img src="/images/card-18.jpg" alt="Card" />
+                    </div>
+                    <div class="ticker-item">
+                        <img src="/images/card-19.jpg" alt="Card" />
+                    </div>
+                    <div class="ticker-item">
+                        <img src="/images/card-20.jpg" alt="Card" />
+                    </div>
+                    <!-- Duplicate for seamless loop -->
+                    <div class="ticker-item">
+                        <img src="/images/reel-1.png" alt="Reel" />
+                    </div>
+                    <div class="ticker-item">
+                        <img src="/images/card-01.jpeg" alt="Card" />
+                    </div>
+                    <div class="ticker-item">
+                        <img src="/images/card-02.jpg" alt="Card" />
+                    </div>
+                    <div class="ticker-item">
+                        <img src="/images/card-03.jpg" alt="Card" />
+                    </div>
+                    <div class="ticker-item">
+                        <img src="/images/reel-2.png" alt="Reel" />
+                    </div>
+                    <div class="ticker-item">
+                        <img src="/images/card-04.jpg" alt="Card" />
+                    </div>
+                    <div class="ticker-item">
+                        <img src="/images/card-05.jpg" alt="Card" />
+                    </div>
+                    <div class="ticker-item">
+                        <img src="/images/card-06.jpg" alt="Card" />
+                    </div>
+                    <div class="ticker-item">
+                        <img src="/images/card-07.jpg" alt="Card" />
+                    </div>
+                    <div class="ticker-item">
+                        <img src="/images/reel-3.png" alt="Reel" />
+                    </div>
+                    <div class="ticker-item">
+                        <img src="/images/card-08.jpg" alt="Card" />
+                    </div>
+                    <div class="ticker-item">
+                        <img src="/images/card-09.jpeg" alt="Card" />
+                    </div>
+                    <div class="ticker-item">
+                        <img src="/images/card-10.jpeg" alt="Card" />
+                    </div>
+                    <div class="ticker-item">
+                        <img src="/images/card-11.jpeg" alt="Card" />
+                    </div>
+                    <div class="ticker-item">
+                        <img src="/images/card-12.jpg" alt="Card" />
+                    </div>
+                    <div class="ticker-item">
+                        <img src="/images/card-13.jpg" alt="Card" />
+                    </div>
+                    <div class="ticker-item">
+                        <img src="/images/card-14.jpg" alt="Card" />
+                    </div>
+                    <div class="ticker-item">
+                        <img src="/images/card-15.jpeg" alt="Card" />
+                    </div>
+                    <div class="ticker-item">
+                        <img src="/images/card-16.jpeg" alt="Card" />
+                    </div>
+                    <div class="ticker-item">
+                        <img src="/images/card-17.jpg" alt="Card" />
+                    </div>
+                    <div class="ticker-item">
+                        <img src="/images/card-18.jpg" alt="Card" />
+                    </div>
+                    <div class="ticker-item">
+                        <img src="/images/card-19.jpg" alt="Card" />
+                    </div>
+                    <div class="ticker-item">
+                        <img src="/images/card-20.jpg" alt="Card" />
+                    </div>
+                </div>
+            </div>
+
+            <!-- REVENUE + TRACTION GRID -->
+            <div class="main-grid">
+                <!-- MODEL — full width -->
+                <div>
+                    <div class="cell revenue-cell">
+                        <div class="cell-label">
+                            <span class="cell-label-dot"></span>Revenue Model
+                        </div>
+
+                        <!-- Revenue Taps: L-shaped faucets, 2 per wall, straight streams, wide container -->
+                        <svg
+                            viewBox="0 0 290 185"
+                            xmlns="http://www.w3.org/2000/svg"
+                            style="
+                                width: 100%;
+                                display: block;
+                                margin: 8px 0 4px;
+                            "
+                        >
+                            <defs>
+                                <linearGradient
+                                    id="wg2"
+                                    x1="0"
+                                    y1="0"
+                                    x2="0"
+                                    y2="1"
+                                >
+                                    <stop
+                                        offset="0%"
+                                        stop-color="#FFC512"
+                                        stop-opacity="0.65"
+                                    />
+                                    <stop
+                                        offset="100%"
+                                        stop-color="#FFC512"
+                                        stop-opacity="0.2"
+                                    />
+                                </linearGradient>
+                            </defs>
+
+                            <!-- ══ LEFT TAP 1 · Subscriptions · long pipe ══ -->
+                            <text
+                                x="65"
+                                y="18"
+                                text-anchor="middle"
+                                font-family="Barlow Condensed,sans-serif"
+                                font-size="9"
+                                font-weight="700"
+                                fill="#333"
+                                letter-spacing="0.3"
+                            >
+                                Subscriptions
+                            </text>
+                            <!-- T-handle -->
+                            <rect
+                                x="21"
+                                y="9"
+                                width="18"
+                                height="4"
+                                rx="2"
+                                fill="#555"
+                            />
+                            <rect
+                                x="28.5"
+                                y="13"
+                                width="3"
+                                height="8"
+                                rx="1"
+                                fill="#555"
+                            />
+                            <!-- valve body -->
+                            <circle cx="30" cy="26" r="12" fill="#424242" />
+                            <circle
+                                cx="30"
+                                cy="26"
+                                r="12"
+                                fill="none"
+                                stroke="#6e6e6e"
+                                stroke-width="1.5"
+                            />
+                            <circle
+                                cx="30"
+                                cy="26"
+                                r="4"
+                                fill="#555"
+                                stroke="#777"
+                                stroke-width="0.8"
+                            />
+                            <!-- horizontal pipe -->
+                            <rect
+                                x="0"
+                                y="22"
+                                width="106"
+                                height="8"
+                                fill="#505050"
+                            />
+                            <rect
+                                x="0"
+                                y="22"
+                                width="106"
+                                height="2"
+                                fill="#888"
+                                opacity="0.45"
+                            />
+                            <!-- elbow corner -->
+                            <rect
+                                x="100"
+                                y="22"
+                                width="8"
+                                height="8"
+                                fill="#505050"
+                            />
+                            <!-- vertical spout -->
+                            <rect
+                                x="100"
+                                y="30"
+                                width="8"
+                                height="16"
+                                rx="1"
+                                fill="#484848"
+                            />
+                            <rect
+                                x="100"
+                                y="30"
+                                width="3"
+                                height="16"
+                                rx="1"
+                                fill="#787878"
+                                opacity="0.35"
+                            />
+                            <!-- straight water stream -->
+                            <rect
+                                x="102"
+                                y="46"
+                                width="5"
+                                height="99"
+                                rx="0"
+                                fill="#5bb8d4"
+                                opacity="0.88"
+                            />
+
+                            <!-- ══ LEFT TAP 2 · Reader Gifts · shorter pipe ══ -->
+                            <text
+                                x="58"
+                                y="58"
+                                text-anchor="middle"
+                                font-family="Barlow Condensed,sans-serif"
+                                font-size="9"
+                                font-weight="700"
+                                fill="#444"
+                                letter-spacing="0.3"
+                            >
+                                Reader Gifts
+                            </text>
+                            <!-- T-handle -->
+                            <rect
+                                x="15"
+                                y="50"
+                                width="18"
+                                height="4"
+                                rx="2"
+                                fill="#555"
+                            />
+                            <rect
+                                x="22.5"
+                                y="54"
+                                width="3"
+                                height="8"
+                                rx="1"
+                                fill="#555"
+                            />
+                            <!-- valve body -->
+                            <circle cx="24" cy="66" r="12" fill="#424242" />
+                            <circle
+                                cx="24"
+                                cy="66"
+                                r="12"
+                                fill="none"
+                                stroke="#6e6e6e"
+                                stroke-width="1.5"
+                            />
+                            <circle
+                                cx="24"
+                                cy="66"
+                                r="4"
+                                fill="#555"
+                                stroke="#777"
+                                stroke-width="0.8"
+                            />
+                            <!-- horizontal pipe -->
+                            <rect
+                                x="0"
+                                y="62"
+                                width="76"
+                                height="8"
+                                fill="#505050"
+                            />
+                            <rect
+                                x="0"
+                                y="62"
+                                width="76"
+                                height="2"
+                                fill="#888"
+                                opacity="0.45"
+                            />
+                            <!-- elbow -->
+                            <rect
+                                x="70"
+                                y="62"
+                                width="8"
+                                height="8"
+                                fill="#505050"
+                            />
+                            <!-- vertical spout -->
+                            <rect
+                                x="70"
+                                y="70"
+                                width="8"
+                                height="16"
+                                rx="1"
+                                fill="#484848"
+                            />
+                            <rect
+                                x="70"
+                                y="70"
+                                width="3"
+                                height="16"
+                                rx="1"
+                                fill="#787878"
+                                opacity="0.35"
+                            />
+                            <!-- straight water stream -->
+                            <rect
+                                x="72"
+                                y="86"
+                                width="4"
+                                height="59"
+                                rx="0"
+                                fill="#5bb8d4"
+                                opacity="0.70"
+                            />
+
+                            <!-- ══ RIGHT TAP 3 · Social Media · long pipe ══ -->
+                            <text
+                                x="220"
+                                y="36"
+                                text-anchor="middle"
+                                font-family="Barlow Condensed,sans-serif"
+                                font-size="9"
+                                font-weight="700"
+                                fill="#444"
+                                letter-spacing="0.3"
+                            >
+                                Social Media
+                            </text>
+                            <!-- T-handle -->
+                            <rect
+                                x="251"
+                                y="27"
+                                width="18"
+                                height="4"
+                                rx="2"
+                                fill="#555"
+                            />
+                            <rect
+                                x="258.5"
+                                y="31"
+                                width="3"
+                                height="8"
+                                rx="1"
+                                fill="#555"
+                            />
+                            <!-- valve body -->
+                            <circle cx="260" cy="44" r="12" fill="#424242" />
+                            <circle
+                                cx="260"
+                                cy="44"
+                                r="12"
+                                fill="none"
+                                stroke="#6e6e6e"
+                                stroke-width="1.5"
+                            />
+                            <circle
+                                cx="260"
+                                cy="44"
+                                r="4"
+                                fill="#555"
+                                stroke="#777"
+                                stroke-width="0.8"
+                            />
+                            <!-- horizontal pipe (right wall → left) -->
+                            <rect
+                                x="184"
+                                y="40"
+                                width="106"
+                                height="8"
+                                fill="#505050"
+                            />
+                            <rect
+                                x="184"
+                                y="40"
+                                width="106"
+                                height="2"
+                                fill="#888"
+                                opacity="0.45"
+                            />
+                            <!-- elbow at left end -->
+                            <rect
+                                x="182"
+                                y="40"
+                                width="8"
+                                height="8"
+                                fill="#505050"
+                            />
+                            <!-- vertical spout -->
+                            <rect
+                                x="182"
+                                y="48"
+                                width="8"
+                                height="16"
+                                rx="1"
+                                fill="#484848"
+                            />
+                            <rect
+                                x="185"
+                                y="48"
+                                width="3"
+                                height="16"
+                                rx="1"
+                                fill="#787878"
+                                opacity="0.35"
+                            />
+                            <!-- straight water stream -->
+                            <rect
+                                x="184"
+                                y="64"
+                                width="4"
+                                height="81"
+                                rx="0"
+                                fill="#5bb8d4"
+                                opacity="0.55"
+                            />
+
+                            <!-- ══ RIGHT TAP 4 · Events · shorter pipe ══ -->
+                            <text
+                                x="240"
+                                y="74"
+                                text-anchor="middle"
+                                font-family="Barlow Condensed,sans-serif"
+                                font-size="9"
+                                font-weight="700"
+                                fill="#555"
+                                letter-spacing="0.3"
+                            >
+                                Events
+                            </text>
+                            <!-- T-handle -->
+                            <rect
+                                x="257"
+                                y="63"
+                                width="18"
+                                height="4"
+                                rx="2"
+                                fill="#555"
+                            />
+                            <rect
+                                x="264.5"
+                                y="67"
+                                width="3"
+                                height="8"
+                                rx="1"
+                                fill="#555"
+                            />
+                            <!-- valve body -->
+                            <circle cx="266" cy="82" r="12" fill="#424242" />
+                            <circle
+                                cx="266"
+                                cy="82"
+                                r="12"
+                                fill="none"
+                                stroke="#6e6e6e"
+                                stroke-width="1.5"
+                            />
+                            <circle
+                                cx="266"
+                                cy="82"
+                                r="4"
+                                fill="#555"
+                                stroke="#777"
+                                stroke-width="0.8"
+                            />
+                            <!-- horizontal pipe -->
+                            <rect
+                                x="212"
+                                y="78"
+                                width="78"
+                                height="8"
+                                fill="#505050"
+                            />
+                            <rect
+                                x="212"
+                                y="78"
+                                width="78"
+                                height="2"
+                                fill="#888"
+                                opacity="0.45"
+                            />
+                            <!-- elbow at left end -->
+                            <rect
+                                x="210"
+                                y="78"
+                                width="8"
+                                height="8"
+                                fill="#505050"
+                            />
+                            <!-- vertical spout -->
+                            <rect
+                                x="210"
+                                y="86"
+                                width="8"
+                                height="16"
+                                rx="1"
+                                fill="#484848"
+                            />
+                            <rect
+                                x="213"
+                                y="86"
+                                width="3"
+                                height="16"
+                                rx="1"
+                                fill="#787878"
+                                opacity="0.35"
+                            />
+                            <!-- straight water stream -->
+                            <rect
+                                x="212"
+                                y="102"
+                                width="3"
+                                height="43"
+                                rx="0"
+                                fill="#5bb8d4"
+                                opacity="0.40"
+                            />
+
+                            <!-- ══ CONTAINER ══ -->
+                            <rect
+                                x="35"
+                                y="126"
+                                width="5"
+                                height="52"
+                                rx="1"
+                                fill="#4a4a4a"
+                            />
+                            <rect
+                                x="250"
+                                y="126"
+                                width="5"
+                                height="52"
+                                rx="1"
+                                fill="#4a4a4a"
+                            />
+                            <rect
+                                x="35"
+                                y="174"
+                                width="220"
+                                height="5"
+                                rx="1"
+                                fill="#4a4a4a"
+                            />
+                            <rect
+                                x="40"
+                                y="145"
+                                width="210"
+                                height="29"
+                                fill="#5bb8d4"
+                                opacity="0.55"
+                            />
+                            <rect
+                                x="40"
+                                y="144"
+                                width="210"
+                                height="2"
+                                rx="1"
+                                fill="#5bb8d4"
+                                opacity="0.85"
+                            />
+                            <text
+                                x="145"
+                                y="163"
+                                text-anchor="middle"
+                                font-family="Barlow Condensed,sans-serif"
+                                font-size="10"
+                                font-weight="700"
+                                fill="#fff"
+                                letter-spacing="1.5"
+                            >
+                                POOL OF FUNDS
+                            </text>
+                        </svg>
+                    </div>
+                    <div
+                        style="
+                            padding: 0 20px 14px;
+                            border-right: 1px solid var(--grey10);
+                        "
+                    >
+                        <a
+                            href="https://donate.stripe.com/5kQeVdesy3R5gyHaR33AY01"
+                            target="_blank"
+                            class="model-note"
+                            style="
+                                display: flex;
+                                align-items: center;
+                                justify-content: center;
+                                text-decoration: none;
+                                text-align: center;
+                                margin: 0;
+                                border-radius: 2px;
+                            "
+                        >
+                            No ads. No corporate donors. No one with an agenda
+                            gets a seat at the table. You and us, we build it
+                            together.
+                        </a>
+                    </div>
+                </div>
+
+                <!-- TRACTION — thin strip, full width -->
+                <div
+                    style="
+                        display: flex;
+                        justify-content: space-between;
+                        flex-direction: column;
+                    "
+                >
+                    <div class="cell traction-cell" style="flex: 1">
+                        <div class="cell-label">
+                            <span class="cell-label-dot"></span>Traction
+                        </div>
+                        <div class="traction-stats">
+                            <div class="traction-stat">
+                                <div class="traction-num">8</div>
+                                <div class="traction-desc">
+                                    Months of operation
+                                </div>
+                            </div>
+                            <div class="traction-stat">
+                                <div class="traction-num">2</div>
+                                <div class="traction-desc">
+                                    Podcasts<br />launched
+                                </div>
+                            </div>
+                            <div class="traction-stat">
+                                <div class="traction-num">1K+</div>
+                                <div class="traction-desc">
+                                    News content published
+                                </div>
+                            </div>
+                            <div class="traction-stat">
+                                <div class="traction-num">11K+</div>
+                                <div class="traction-desc">
+                                    Social followers
+                                </div>
+                            </div>
+                            <div class="traction-stat">
+                                <div class="traction-num">1.5M+</div>
+                                <div class="traction-desc">Content views</div>
+                            </div>
+                            <div class="traction-stat">
+                                <div class="traction-num">500K+</div>
+                                <div class="traction-desc">Reactions</div>
+                            </div>
+                            <div class="traction-stat">
+                                <div class="traction-num">22K+</div>
+                                <div class="traction-desc">Comments</div>
+                            </div>
+                            <div class="traction-stat">
+                                <div class="traction-num">28K+</div>
+                                <div class="traction-desc">Shares</div>
+                            </div>
+                        </div>
+                    </div>
+                    <div style="padding: 0 20px 14px; background: var(--beige)">
+                        <a
+                            href="https://donate.stripe.com/5kQeVdesy3R5gyHaR33AY01"
+                            target="_blank"
+                            class="model-note"
+                            style="
+                                display: flex;
+                                align-items: center;
+                                justify-content: center;
+                                text-decoration: none;
+                                text-align: center;
+                                margin: 0;
+                                border-radius: 2px;
+                                padding: 9px 11px;
+                            "
+                        >
+                            Help us<br />reach more people
+                        </a>
+                    </div>
+                </div>
+
+                <!-- ROADMAP — full width -->
+                <!-- ROADMAP — full width -->
+                <div class="roadmap-wrapper">
+                    <div class="roadmap-col active">
+                        <div class="phase-header">
+                            <span class="phase-tag now">Now</span>
+                            <span class="phase-period">Launched</span>
+                        </div>
+                        <div class="roadmap-item">
+                            <span class="ri-bullet y"></span
+                            ><span>Hand picked byte sized news coverage</span>
+                        </div>
+                        <div class="roadmap-item">
+                            <span class="ri-bullet y"></span
+                            ><span>The TechnoloGist podcast</span>
+                        </div>
+                        <div class="roadmap-item">
+                            <span class="ri-bullet y"></span
+                            ><span>iHate Politics podcast</span>
+                        </div>
+                        <div class="roadmap-item">
+                            <span class="ri-bullet y"></span
+                            ><span>What's the Gist: Explainers</span>
+                        </div>
+                    </div>
+                    <div class="roadmap-col">
+                        <div class="phase-header">
+                            <span class="phase-tag next">Next</span>
+                            <span class="phase-period">6 Months</span>
+                        </div>
+                        <div class="roadmap-item">
+                            <span class="ri-bullet b"></span
+                            ><span>Launch Website</span>
+                        </div>
+                        <div class="roadmap-item">
+                            <span class="ri-bullet b"></span
+                            ><span
+                                >Podcast series on Economy, Philosophy and Life
+                                in Bangladesh</span
+                            >
+                        </div>
+                        <div class="roadmap-item">
+                            <span class="ri-bullet b"></span
+                            ><span>Long form articles</span>
+                        </div>
+                        <div class="roadmap-item">
+                            <span class="ri-bullet b"></span
+                            ><span
+                                >100 members aka the StrateGists program</span
+                            >
+                        </div>
+                    </div>
+                    <div class="roadmap-col">
+                        <div class="phase-header">
+                            <span class="phase-tag later">Later</span>
+                            <span class="phase-period">12–24 Months</span>
+                        </div>
+                        <div class="roadmap-item">
+                            <span class="ri-bullet g"></span
+                            ><span>Political Satire Shows</span>
+                        </div>
+                        <div class="roadmap-item">
+                            <span class="ri-bullet g"></span
+                            ><span
+                                >The Gist Stream: mainstreaming reaction
+                                streaming</span
+                            >
+                        </div>
+                        <div class="roadmap-item">
+                            <span class="ri-bullet g"></span
+                            ><span>Documentaries</span>
+                        </div>
+                        <div class="roadmap-item">
+                            <span class="ri-bullet g"></span
+                            ><span
+                                >International collaboration with similar media
+                                platforms</span
+                            >
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- ASK -->
+            <div class="ask-band">
+                <div class="support-us">
+                    <div class="ask-headline">
+                        Your <span>support</span> builds The Gist
+                    </div>
+                    <div style="margin-top: 8px">
+                        <a
+                            href="https://donate.stripe.com/5kQeVdesy3R5gyHaR33AY01"
+                            target="_blank"
+                            style="
+                                display: inline-block;
+                                background: var(--yellow);
+                                color: var(--black);
+                                font-family: var(--condensed);
+                                font-size: 9px;
+                                font-weight: 700;
+                                letter-spacing: 1.5px;
+                                text-transform: uppercase;
+                                text-decoration: none;
+                                padding: 6px 14px;
+                            "
+                            >Support Us</a
+                        >
+                    </div>
+                </div>
+                <a
+                    href="https://donate.stripe.com/5kQeVdesy3R5gyHaR33AY01"
+                    target="_blank"
+                    class="ask-deadline"
+                    style="text-decoration: none; cursor: pointer"
+                    >This Ramadan<br />build something<br />that lasts</a
+                >
+                <div class="logo" style="display: flex; align-items: center">
+                    <img
+                        src="/images/gist-logo-black.jpeg"
+                        alt="The Gist"
+                        style="height: 50px; border-radius: 2px"
+                    />
+                </div>
+            </div>
+
+            <!-- FOOTER -->
+            <div class="footer-strip">
+                <svg
+                    width="11"
+                    height="11"
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    stroke="#555"
+                    stroke-width="2"
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                >
+                    <circle cx="12" cy="12" r="10" />
+                    <line x1="2" y1="12" x2="22" y2="12" />
+                    <path
+                        d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"
+                    />
+                </svg>
+                <a href="https://thegist.bd" target="_blank" class="footer-url"
+                    >thegist.bd</a
+                >
+                <span class="footer-divider">·</span>
+                <span class="footer-copy"
+                    >© 2025 The Gist BD Ltd. All rights reserved.</span
+                >
+                <span class="footer-divider">·</span>
+                <span class="footer-copy"
+                    >The Gist BD Ltd. is a not-for-profit media company
+                    registered in the UK (company number 16980598), focused on Bangladesh and the people
+                    of Bangladesh — at home and abroad.</span
+                >
+            </div>
+        </div>
+
+        <div class="lightbox">
+            <button class="lb-arrow lb-prev">&#8249;</button>
+            <img src="" alt="Preview" />
+            <button class="lb-arrow lb-next">&#8250;</button>
+        </div>
+
+        <script>
+            (function () {
+                var items = Array.from(
+                    document.querySelectorAll('.ticker-item')
+                );
+                var srcs = items.map(function (item) {
+                    return item.querySelector('img').src;
+                });
+                // Deduplicate (ticker duplicates items for seamless loop)
+                var uniqueSrcs = srcs.slice(0, srcs.length / 2);
+                var lb = document.querySelector('.lightbox');
+                var lbImg = lb.querySelector('img');
+                var currentIndex = 0;
+
+                function open(idx) {
+                    currentIndex = idx;
+                    lbImg.src = uniqueSrcs[currentIndex];
+                    lb.classList.add('active');
+                }
+
+                function close() {
+                    lb.classList.remove('active');
+                }
+
+                function next() {
+                    open((currentIndex + 1) % uniqueSrcs.length);
+                }
+                function prev() {
+                    open(
+                        (currentIndex - 1 + uniqueSrcs.length) %
+                            uniqueSrcs.length
+                    );
+                }
+
+                items.forEach(function (item, i) {
+                    item.addEventListener('click', function () {
+                        open(i % uniqueSrcs.length);
+                    });
+                });
+
+                lb.addEventListener('click', function (e) {
+                    if (e.target === lb) close();
+                });
+                lb.querySelector('.lb-prev').addEventListener(
+                    'click',
+                    function (e) {
+                        prev();
+                    }
+                );
+                lb.querySelector('.lb-next').addEventListener(
+                    'click',
+                    function (e) {
+                        next();
+                    }
+                );
+
+                document.addEventListener('keydown', function (e) {
+                    if (!lb.classList.contains('active')) return;
+                    if (e.key === 'Escape') close();
+                    else if (e.key === 'ArrowRight') next();
+                    else if (e.key === 'ArrowLeft') prev();
+                });
+            })();
+        </script>
+    </body>
+</html>

@@ -1,0 +1,21 @@
+{
+    "name": "The Gist",
+    "short_name": "The Gist",
+    "description": "Meta Media to cut through the noise. Clarity over chaos.",
+    "icons": [
+        {
+            "src": "/192x192.png",
+            "sizes": "192x192",
+            "type": "image/png"
+        },
+        {
+            "src": "/512x512.png",
+            "sizes": "512x512",
+            "type": "image/png"
+        }
+    ],
+    "start_url": "/",
+    "background_color": "#000000",
+    "theme_color": "#F9A707",
+    "display": "standalone"
+}
